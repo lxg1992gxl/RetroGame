@@ -9,8 +9,13 @@ import android.view.View;
 
 public class RoadView extends View {
 
+    Paint paint;
+    Game game;
+
     public RoadView(Context context,AttributeSet attrs) {
         super(context, attrs);
+        paint = new Paint();
+        game = new Game();
 
     }
     @Override
@@ -20,6 +25,8 @@ public class RoadView extends View {
         paintBG.setColor(Color.BLUE);
         paintBG.setStrokeWidth(600);
         canvas.drawLine(0,500,canvas.getWidth(),500,paintBG);
+        game.draw(canvas,paint);
+
     }
 
 }

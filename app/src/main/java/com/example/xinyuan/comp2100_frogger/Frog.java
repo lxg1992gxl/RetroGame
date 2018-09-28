@@ -6,8 +6,8 @@ import android.graphics.Paint;
 
 public class Frog extends Sprite{
 
-    public static final float STARTX = 100f;
-    public static final float STARTY = 800f;
+    public static final float STARTX = 0.5f;
+    public static final float STARTY = 0.9f;
 
     public Frog() {
         pos = new Pos(STARTX, STARTY);
@@ -18,10 +18,10 @@ public class Frog extends Sprite{
         int h = c.getHeight();
         int w = c.getWidth();
 
-//        float xc = pos.x * w;
-//        float yc = pos.y * h;
+        float xc = pos.x * w;
+        float yc = pos.y * h;
         p.setColor(Color.GREEN);
 
-        c.drawCircle(STARTX,STARTY,20,p);
+        c.drawCircle(xc,yc,20,p);
     }
 }
