@@ -73,7 +73,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             return "GOLEFT";
         }
         else {
-           return "GORIGHT";
+            return "GORIGHT";
         }
     }
 
