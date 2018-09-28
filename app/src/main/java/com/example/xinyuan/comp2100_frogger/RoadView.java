@@ -28,8 +28,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
-        System.out.println("Height is " + canvasH);
-        System.out.println("2/3 Height is " + (2 * canvasH / 3));
 
         Paint paintBG = new Paint();
         paintBG.setColor(Color.BLUE);
@@ -37,7 +35,8 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         canvas.drawLine(0,525,canvas.getWidth(),525,paintBG);
 
 
-        // line showing UP DOWN LEFT RIGHT
+        // line showing UP DOWN LEFT RIGHT region
+        // delete this when game is almost complete
         paintBG.setStrokeWidth(10);
         paintBG.setColor(Color.RED);
         canvas.drawLine(0.5f* canvasW,canvasH / 3,0.5f * canvasW, (2 * canvasH / 3),paintBG);
@@ -62,6 +61,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         return true;
     }
 
+    // check which region is the user pressing, and return a correct move instruction to the frog
     private String checkRegion(float x, float y) {
         if (x <= canvasW && x >= 0 && y <= canvasH / 3) {
             return "GOUP";

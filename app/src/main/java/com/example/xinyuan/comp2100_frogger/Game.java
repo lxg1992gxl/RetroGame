@@ -7,17 +7,26 @@ public class Game {
 
     private Frog frog;
     private Car car;
+    private boolean frogDied;
 
     public Game() {
         frog = new Frog();
         car = new Car(0,0);
+        frogDied = false;
     }
 
     // draw all the game
     public void draw(Canvas canvas, Paint paint) {
         frog.draw(canvas, paint);
-        car.draw(canvas,paint);
+        car.draw(canvas, paint);
+    }
 
+    public boolean hasWon() {
+        return !frogDied;
+    }
+
+    public boolean carHit() {
+        return frogDied;
     }
 
     public void touch(String move) {
