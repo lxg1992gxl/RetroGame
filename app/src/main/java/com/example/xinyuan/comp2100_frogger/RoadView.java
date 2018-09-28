@@ -19,7 +19,7 @@ public class RoadView extends View {
         Paint paintBG = new Paint();
         paintBG.setColor(Color.BLUE);
         paintBG.setStrokeWidth(600);
-        canvas.drawLine(0,500,canvas.getWidth(),500,paintBG);
+        canvas.drawLine(0,450,canvas.getWidth(),450,paintBG);
     }
 
 }
