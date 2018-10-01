@@ -5,20 +5,27 @@ import android.graphics.Paint;
 
 public class Game {
 
+    private static final float FROGMOVE = 0.1f;
+
+    private River river;
     private Frog frog;
     private Car car;
+    private Cars cars;
     private boolean frogDied;
 
     public Game() {
         frog = new Frog();
-        car = new Car(0,0);
+//        car = new Car(0,0);
+        cars = Cars.generateCar(1080.0f);
+        river = new River();
         frogDied = false;
     }
 
     // draw all the game
     public void draw(Canvas canvas, Paint paint) {
+        river.draw(canvas,paint);
         frog.draw(canvas, paint);
-        car.draw(canvas, paint);
+        cars.draw(canvas, paint);
     }
 
     public boolean hasWon() {
@@ -29,18 +36,29 @@ public class Game {
         return frogDied;
     }
 
+    public void step() {
+        cars.step();
+
+//         check if frog is hit by a car
+//        if (!frog.initialization && !car.initialization) {
+//            if (frog.hitby(car)) {
+//                frogDied = true;
+//            }
+//        }
+    }
+
     public void touch(String move) {
         if (move == "GOUP") {
-            frog.pos.y -= 150;
+            frog.pos.y -= FROGMOVE;
         }
         else if (move == "GODOWN") {
-            frog.pos.y += 150;
+            frog.pos.y += FROGMOVE;
         }
         else if (move == "GOLEFT") {
-            frog.pos.x -= 100;
+            frog.pos.x -= FROGMOVE;
         }
         else {
-            frog.pos.x += 100;
+            frog.pos.x += FROGMOVE;
         }
     }
 }
