@@ -30,12 +30,12 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        canvasH = canvas.getHeight();
+        canvasW = canvas.getWidth();
         /*
         // line showing UP DOWN LEFT RIGHT region
         // uncomment this to see the control regions
 
-        canvasH = canvas.getHeight();
-        canvasW = canvas.getWidth();
         Paint paintGuidedLine = new Paint();
         paintGuidedLine.setStrokeWidth(10);
         paintGuidedLine.setColor(Color.RED);
@@ -57,6 +57,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             game.touch(checkRegion(userX,userY));
+//            System.out.println();
         }
         invalidate();
         return true;

@@ -16,7 +16,7 @@ public class Game {
     public Game() {
         frog = new Frog();
 //        car = new Car(0,0);
-        cars = Cars.generateCar(1080.0f);
+        cars = Cars.generateCar(3,3);
         river = new River();
         frogDied = false;
     }

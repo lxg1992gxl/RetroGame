@@ -22,19 +22,6 @@ public class Frog extends Sprite{
         int h = c.getHeight();
         int w = c.getWidth();
 
-//        if (pos.x == 0.5f && pos.y == 0.9f) {
-//            xc = pos.x * w;
-//            yc = pos.y * h;
-//            pos.x = xc;
-//            pos.y = yc;
-//            System.out.println("inital x " + xc + " and y is "+ yc);
-//            initialization = false;
-//        }
-//        else {
-//            xc = pos.x;
-//            yc = pos.y;
-//        }
-
         xc = pos.x * w;
         yc = pos.y * h;
 //        System.out.println("x is " + xc + "and yc is " + yc);

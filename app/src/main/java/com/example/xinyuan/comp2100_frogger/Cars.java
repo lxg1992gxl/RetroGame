@@ -8,21 +8,33 @@ import java.util.Random;
 
 public class Cars extends ArrayList<Car> {
 
-    private static final int CARROW = 3;
+    private static final float DOWNGAP = 0.1f;
     private static final int MAXCAR = 3;
     private static final float MINGAP = 40.0f;
+    private static final float UPPERY = 0.58f;
+    private static final float LOWERY = 0.88f;
 
 
-    public static Cars generateCar(float cW) {
-        Random random = new Random();
+
+    public static Cars generateCar(int cols, int rows) {
         Cars res = new Cars();
-        float xRandom = random.nextInt((int)cW);
-        for (float y = 1275.6f; y <= 975.6; y-=150.0f) {
-            float xGap = MINGAP + random.nextInt(60);
-            for (float x = xRandom; x <= MAXCAR; x+= xGap) {
-                res.add(new Car(xRandom,y));
+//        float xgap = 1.0f / (cols + 1);
+        for (float y = UPPERY; y <= LOWERY; y+= DOWNGAP) {
+            for (int c = 1; c <= MAXCAR ; c++) {
+                Random random = new Random();
+                float xRandom = random.nextFloat();
+                System.out.println(c);
+                float x = xRandom;
+                res.add(new Car(x, y));
             }
-
+        }
+        for (int i = 0; i < res.size(); i++) {
+            if (i < 3 || i >6) {
+                res.get(i).movingleft = true;
+            }
+            else {
+                res.get(i).movingleft = false;
+            }
         }
         return res;
     }
@@ -34,17 +46,19 @@ public class Cars extends ArrayList<Car> {
     public void step() {
         // move the cars side to side
 
-//        if (movingleft) {
-//            this.pos.x -= 15;
-//            if (this.pos.x == 0) {
-//                movingleft = false;
-//            }
-//        } else {
-//            this.pos.x += 15;
-//            if (this.pos.x == cW) {
-//                movingleft = true;
-//            }
-//        }
-//    }
+        for (Car c : this) {
+            if (c.movingleft) {
+                c.pos.x -= 0.025f;
+                if (c.pos.x <= 0.0f) {
+                    c.movingleft = false;
+                }
+            } else {
+                c.pos.x += 0.025f;
+                if (c.pos.x >= 1.0f) {
+                    c.movingleft = true;
+                }
+            }
+        }
     }
 }
+
