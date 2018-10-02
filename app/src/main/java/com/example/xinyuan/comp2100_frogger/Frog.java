@@ -10,8 +10,6 @@ public class Frog extends Sprite{
     public static final float STARTY = 0.9f;
     public static final float FROGRADIUS = 20;
     float xc, yc;
-    boolean initialization = true;
-
 
     public Frog() {
         pos = new Pos(STARTX, STARTY);

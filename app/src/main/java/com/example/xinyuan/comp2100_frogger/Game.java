@@ -9,15 +9,14 @@ public class Game {
 
     private River river;
     private Frog frog;
-    private Car car;
     private Cars cars;
     private Woods woods;
     private boolean frogDied;
 
     public Game() {
         frog = new Frog();
-//        car = new Car(0,0);
         cars = Cars.generateCar();
+        woods = Woods.manyWoods(3,3);
         river = new River();
         frogDied = false;
     }

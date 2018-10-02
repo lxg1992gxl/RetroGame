@@ -20,7 +20,6 @@ public class Woods extends ArrayList<Wood> {
             for (int c = 1; c <= MAXWOOD ; c++) {
                 Random random = new Random();
                 float xRandom = random.nextFloat();
-                System.out.println(c);
                 float x = xRandom;
                 res.add(new Wood(x, y));
             }
