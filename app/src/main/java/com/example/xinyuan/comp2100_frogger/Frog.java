@@ -24,7 +24,7 @@ public class Frog extends Sprite{
 
     public void  attached(){
         if (attached != null){
-
+            this.pos.x += 0.025f;
         }
     }
 

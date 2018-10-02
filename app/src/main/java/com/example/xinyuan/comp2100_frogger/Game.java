@@ -44,13 +44,13 @@ public class Game {
         woods.step();
         woods.updateWoods(woods);
 
+
 //         check if frog is hit by a car
 
 //        if (frog.hitby(car)) {
 //                frogDied = true;
 //        }
     }
-
 
 
     public void touch(String move) {
