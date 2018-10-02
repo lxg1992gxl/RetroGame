@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Frog extends Sprite{
+public class Frog extends Sprite {
 
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
@@ -39,10 +39,17 @@ public class Frog extends Sprite{
 
         p.setColor(Color.GREEN);
 
-        c.drawCircle(xc,yc,FROGRADIUS,p);
+        c.drawCircle(xc, yc, FROGRADIUS, p);
     }
 
     public boolean hitby(Car c) {
-        return (c.pos.rectCircleColliding(this,c));
+        return (c.pos.rectCircleColliding(this, c));
+    }
+
+    //check if frog reach the goal
+    public boolean reachGoal() {
+        if (this.pos.y < 0.1) {
+            return true;
+        } else return false;
     }
 }
