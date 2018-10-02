@@ -53,16 +53,20 @@ public class Game {
 
     public void touch(String move) {
         if (move == "GOUP") {
-            frog.pos.y -= FROGMOVE;
+            if (frog.pos.y>0.11)
+                frog.pos.y -= FROGMOVE;
         }
         else if (move == "GODOWN") {
-            frog.pos.y += FROGMOVE;
+            if (frog.pos.y<0.89)
+                frog.pos.y += FROGMOVE;
         }
         else if (move == "GOLEFT") {
-            frog.pos.x -= FROGMOVE;
+            if (frog.pos.x>0.11)
+                frog.pos.x -= FROGMOVE;
         }
-        else {
-            frog.pos.x += FROGMOVE;
+        else if (move == "GORIGHT"){
+            if (frog.pos.y<0.89)
+                frog.pos.x += FROGMOVE;
         }
     }
 }
