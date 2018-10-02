@@ -63,14 +63,8 @@ public class Woods extends ArrayList<Wood> {
         for (Wood c : this) {
             if (c.movingleft) {
                 c.pos.x -= 0.025f;
-                if (c.pos.x <= 0.0f) {
-                    c.movingleft = false;
-                }
             } else {
                 c.pos.x += 0.025f;
-                if (c.pos.x >= 1.0f) {
-                    c.movingleft = true;
-                }
             }
         }
     }

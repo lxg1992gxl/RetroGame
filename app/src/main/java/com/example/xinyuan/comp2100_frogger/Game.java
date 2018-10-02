@@ -41,6 +41,7 @@ public class Game {
     public void step() {
         cars.step();
         cars.updateCars(cars);
+        woods.step();
         woods.updateWoods(woods);
 
 //         check if frog is hit by a car
@@ -49,6 +50,8 @@ public class Game {
 //                frogDied = true;
 //        }
     }
+
+
 
     public void touch(String move) {
         if (move == "GOUP") {
