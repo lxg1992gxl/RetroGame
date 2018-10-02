@@ -71,7 +71,7 @@ public class Game {
             if (frog.pos.x > 0.11)
                 frog.pos.x -= FROGMOVE;
         } else if (move == "GORIGHT") {
-            if (frog.pos.y < 0.89)
+            if (frog.pos.x < 0.89)
                 frog.pos.x += FROGMOVE;
         }
     }
