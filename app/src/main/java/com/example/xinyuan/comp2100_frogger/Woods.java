@@ -61,13 +61,9 @@ public class Woods extends ArrayList<Wood> {
     public void step(){
         for (Wood c : this) {
             if (c.movingleft) {
-                if (c.pos.x <= 0.0f) {
-                    c.movingleft = false;
-                }
+                c.pos.x -= 0.025f;
             } else {
-                if (c.pos.x >= 1.0f) {
-                    c.movingleft = true;
-                }
+                c.pos.x += 0.025f;
             }
         }
     }

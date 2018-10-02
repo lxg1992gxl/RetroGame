@@ -22,6 +22,12 @@ public class Frog extends Sprite{
         attached = wood;
     }
 
+    public void  attached(){
+        if (attached != null){
+
+        }
+    }
+
     @Override
     public void draw(Canvas c, Paint p) {
 //        System.out.println("x is " + xc + "and yc is " + yc);
