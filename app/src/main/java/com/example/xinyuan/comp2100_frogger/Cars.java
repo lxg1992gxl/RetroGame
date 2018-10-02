@@ -28,9 +28,10 @@ public class Cars extends ArrayList<Car> {
             row++;
         }
         for (int i = 0; i < res.size(); i++) {
-            if (i < 3 || i > 6) {
+            if (i < 3 || i >= 6) {
                 res.get(i).movingleft = true;
-            } else {
+            }
+            else {
                 res.get(i).movingleft = false;
             }
         }
