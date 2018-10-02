@@ -8,14 +8,19 @@ import java.util.Random;
 
 public class Car extends Sprite {
 
-    //    private static final float Y = 0.9f;
-    float cW;
+    float carWidth = 100.0f;
+    float carHeight = 60.0f;
+
     boolean movingleft;
     float xc, yc;
+    int row;
     Random random;
 
-    public Car(float x, float y) {
+
+
+    public Car(float x, float y, int row) {
         this.pos = new Pos(x, y);
+        this.row = row;
         movingleft = true;
     }
 
@@ -31,9 +36,22 @@ public class Car extends Sprite {
 
 //        random = new Random();
 //        float carWidth = random.nextInt(120);
-        float carWidth = 100.0f;
-        float carHeight = 60.0f;
+
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
     }
 
+    public boolean outOfTheRoad() {
+        if (movingleft) {
+            pos.x -= 0.025f;
+            if (pos.x <= -0.09f) {
+                return true;
+            }
+        } else {
+            pos.x += 0.025f;
+            if (pos.x >= 1.0f) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

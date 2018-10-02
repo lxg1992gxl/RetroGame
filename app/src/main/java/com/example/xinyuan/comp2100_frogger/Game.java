@@ -16,7 +16,7 @@ public class Game {
     public Game() {
         frog = new Frog();
 //        car = new Car(0,0);
-        cars = Cars.generateCar(3,3);
+        cars = Cars.generateCar();
         river = new River();
         frogDied = false;
     }
@@ -38,12 +38,12 @@ public class Game {
 
     public void step() {
         cars.step();
+        cars.updateCars(cars);
 
 //         check if frog is hit by a car
-//        if (!frog.initialization && !car.initialization) {
-//            if (frog.hitby(car)) {
+
+//        if (frog.hitby(car)) {
 //                frogDied = true;
-//            }
 //        }
     }
 

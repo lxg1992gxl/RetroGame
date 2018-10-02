@@ -21,10 +21,9 @@ public class Pos {
     }
 
     public boolean rectCircleColliding(Frog f, Car c){
-        float w = 100;
-        float h = 50;
-//        System.out.println("Frog has a radius of " + f.FROGRADIUS + ", x of " + f.xc + " and y of " + f.yc);
-//        System.out.println("Car has a x of " + c.xc + ", y of " + c.yc + ", width of " + w + " and height of " + h);
+        float w = c.carWidth;
+        float h = c.carHeight;
+
         float distX = Math.abs(f.pos.x - c.pos.x - w/2);
         float distY = Math.abs(f.pos.y - c.pos.y - h/2);
 

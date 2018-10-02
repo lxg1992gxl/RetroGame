@@ -57,7 +57,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             game.touch(checkRegion(userX,userY));
-//            System.out.println();
         }
         invalidate();
         return true;
