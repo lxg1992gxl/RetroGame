@@ -6,8 +6,11 @@ import android.graphics.Paint;
 
 public class Wood extends Sprite {
 
+    boolean movingleft;
+
     public Wood(float x, float y){
         this.pos = new Pos(x, y);
+        movingleft = true;
     }
     @Override
     public void draw(Canvas c, Paint p) {
@@ -20,6 +23,8 @@ public class Wood extends Sprite {
         p.setColor(Color.RED);
         p.setStrokeWidth(50.0f);
 
-        c.drawLine(xc, yc, xc+20.0f, yc, p);
+        float woodWidth = 100.0f;
+        float woodHeight = 60.0f;
+        c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
         }
 }

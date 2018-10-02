@@ -11,6 +11,7 @@ public class Game {
     private Frog frog;
     private Car car;
     private Cars cars;
+    private Woods woods;
     private boolean frogDied;
 
     public Game() {
@@ -26,6 +27,7 @@ public class Game {
         river.draw(canvas,paint);
         frog.draw(canvas, paint);
         cars.draw(canvas, paint);
+        woods.draw(canvas, paint);
     }
 
     public boolean hasWon() {
@@ -39,6 +41,7 @@ public class Game {
     public void step() {
         cars.step();
         cars.updateCars(cars);
+        woods.step();
 
 //         check if frog is hit by a car
 
@@ -49,16 +52,20 @@ public class Game {
 
     public void touch(String move) {
         if (move == "GOUP") {
-            frog.pos.y -= FROGMOVE;
+            if (frog.pos.y>0.11)
+                frog.pos.y -= FROGMOVE;
         }
         else if (move == "GODOWN") {
-            frog.pos.y += FROGMOVE;
+            if (frog.pos.y<0.89)
+                frog.pos.y += FROGMOVE;
         }
         else if (move == "GOLEFT") {
-            frog.pos.x -= FROGMOVE;
+            if (frog.pos.x>0.11)
+                frog.pos.x -= FROGMOVE;
         }
-        else {
-            frog.pos.x += FROGMOVE;
+        else if (move == "GORIGHT"){
+            if (frog.pos.y<0.89)
+                frog.pos.x += FROGMOVE;
         }
     }
 }
