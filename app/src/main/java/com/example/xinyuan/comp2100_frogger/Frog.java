@@ -10,7 +10,7 @@ public class Frog extends Sprite{
     public static final float STARTY = 0.9f;
     public static final float FROGRADIUS = 20;
     float xc, yc;
-    boolean initialization = true;
+    int cH, cW;
     Wood attached = null;
 
 
@@ -24,12 +24,15 @@ public class Frog extends Sprite{
 
     @Override
     public void draw(Canvas c, Paint p) {
+//        System.out.println("x is " + xc + "and yc is " + yc);
         int h = c.getHeight();
         int w = c.getWidth();
 
+        cH = h;
+        cW = w;
+
         xc = pos.x * w;
         yc = pos.y * h;
-//        System.out.println("x is " + xc + "and yc is " + yc);
 
         p.setColor(Color.GREEN);
 

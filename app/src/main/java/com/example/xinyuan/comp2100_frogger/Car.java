@@ -42,12 +42,10 @@ public class Car extends Sprite {
 
     public boolean outOfTheRoad() {
         if (movingleft) {
-            pos.x -= 0.025f;
             if (pos.x <= -0.09f) {
                 return true;
             }
         } else {
-            pos.x += 0.025f;
             if (pos.x >= 1.0f) {
                 return true;
             }
