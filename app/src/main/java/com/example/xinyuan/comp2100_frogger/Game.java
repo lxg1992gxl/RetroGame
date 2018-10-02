@@ -11,12 +11,14 @@ public class Game {
     private Frog frog;
     private Car car;
     private Cars cars;
+    private Woods woods;
     private boolean frogDied;
 
     public Game() {
         frog = new Frog();
 //        car = new Car(0,0);
         cars = Cars.generateCar(3,3);
+        woods = Woods.manyWoods(3, 3);
         river = new River();
         frogDied = false;
     }
@@ -26,6 +28,7 @@ public class Game {
         river.draw(canvas,paint);
         frog.draw(canvas, paint);
         cars.draw(canvas, paint);
+        woods.draw(canvas, paint);
     }
 
     public boolean hasWon() {
@@ -38,6 +41,7 @@ public class Game {
 
     public void step() {
         cars.step();
+        woods.step();
 
 //         check if frog is hit by a car
 //        if (!frog.initialization && !car.initialization) {
