@@ -4,15 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
-
+    public static final int STEPDELAY = 100;
     float canvasH, canvasW;
     Paint paint;
     Game game;
+    Handler repaintHandler;
 
     public RoadView(Context context,AttributeSet attrs) {
         super(context, attrs);
@@ -20,6 +22,8 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         paint = new Paint();
         game = new Game();
         this.setOnTouchListener(this);
+        repaintHandler = new Handler();
+        repaintHandler.postDelayed(this, STEPDELAY);
 
     }
     @Override
@@ -28,24 +32,20 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
-        System.out.println("Height is " + canvasH);
-        System.out.println("2/3 Height is " + (2 * canvasH / 3));
+        /*
+        // line showing UP DOWN LEFT RIGHT region
+        // uncomment this to see the control regions
 
-        Paint paintBG = new Paint();
-        paintBG.setColor(Color.BLUE);
-        paintBG.setStrokeWidth(450);
-        canvas.drawLine(0,525,canvas.getWidth(),525,paintBG);
-
-
-        // line showing UP DOWN LEFT RIGHT
-        paintBG.setStrokeWidth(10);
-        paintBG.setColor(Color.RED);
-        canvas.drawLine(0.5f* canvasW,canvasH / 3,0.5f * canvasW, (2 * canvasH / 3),paintBG);
-        canvas.drawLine(0,canvasH / 3,canvasW,canvasH/3,paintBG);
-        paintBG.setColor(Color.GREEN);
-        canvas.drawLine(0,((2 * canvasH / 3)),canvasW,((2 * canvasH / 3)),paintBG);
-
-
+        Paint paintGuidedLine = new Paint();
+        paintGuidedLine.setStrokeWidth(10);
+        paintGuidedLine.setColor(Color.RED);
+        // upper line
+        canvas.drawLine(0,canvasH * 0.35f,canvasW, canvasH * 0.35f, paintGuidedLine);
+        // lower line
+        canvas.drawLine(0,canvasH * 0.65f,canvasW, canvasH * 0.65f, paintGuidedLine);
+        // left right line
+        canvas.drawLine(0.5f * canvasW,canvasH * 0.35f,0.5f * canvasW,canvasH * 0.65f,paintGuidedLine);
+        */
         game.draw(canvas,paint);
 
     }
@@ -57,19 +57,24 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             game.touch(checkRegion(userX,userY));
+//            System.out.println();
         }
         invalidate();
         return true;
     }
 
+    // check which region is the user pressing, and return a correct move instruction to the frog
     private String checkRegion(float x, float y) {
-        if (x <= canvasW && x >= 0 && y <= canvasH / 3) {
+        // pressing upper region
+        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
             return "GOUP";
         }
-        else if (x <= canvasW && x >= 0 && y >= 2 * canvasH / 3) {
+        // pressing lower region
+        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
             return "GODOWN";
         }
-        else if (x <= 0.5 * canvasW && x >= 0 && y < 2 * canvasH / 3 && y > canvasH / 3) {
+        // pressing left side of middle region
+        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
             return "GOLEFT";
         }
         else {
@@ -77,8 +82,25 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         }
     }
 
+    // step the view forward by one step - true is returned if more steps to go
+    public boolean step() {
+        game.step();
+//        if (game.hasWon() || game.carHit()) {
+//           /* Context context = this.getContext();
+//            while (!(context instanceof GameActivity))
+//                context = ((GameActivity) context).getBaseContext();
+//            ((GameActivity) context).endActivity(game.hasWon() ? "You Win !!" : "You Lost :(");*/
+////            notifyGameOver();
+//            return false;
+//        }
+        this.invalidate();
+        return true;
+    }
+
     @Override
     public void run() {
-
+        if (step()) {
+            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
+        }
     }
 }
