@@ -7,9 +7,11 @@ import android.graphics.Paint;
 public class Wood extends Sprite {
 
     boolean movingleft;
+    int row;
 
-    public Wood(float x, float y){
+    public Wood(float x, float y, int row){
         this.pos = new Pos(x, y);
+        this.row = row;
         movingleft = true;
     }
     @Override
@@ -27,4 +29,19 @@ public class Wood extends Sprite {
         float woodHeight = 60.0f;
         c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
         }
+
+    public boolean outOfTheRoad() {
+        if (movingleft) {
+            pos.x -= 0.025f;
+            if (pos.x <= -0.09f) {
+                return true;
+            }
+        } else {
+            pos.x += 0.025f;
+            if (pos.x >= 1.0f) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
