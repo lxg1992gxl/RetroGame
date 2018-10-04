@@ -34,7 +34,7 @@ public class Car extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
 
-//        random = new Random();
+        random = new Random();
 //        float carWidth = random.nextInt(120);
 
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);

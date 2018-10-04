@@ -2,9 +2,7 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Random;
 
@@ -21,10 +19,8 @@ public class Cars extends ArrayList<Car> {
         int row = 1;
 
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
-
             for (int numberOfCar = 1; numberOfCar <= MAXCAR; numberOfCar++) {
                 Random random = new Random();
-                float gap = random.nextFloat() * MINGAP;
                 float xRandom = random.nextFloat();
                 float x = xRandom;
                 res.add(new Car(x, y, row));
@@ -32,9 +28,10 @@ public class Cars extends ArrayList<Car> {
             row++;
         }
         for (int i = 0; i < res.size(); i++) {
-            if (i < 3 || i > 6) {
+            if (i < 3 || i >= 6) {
                 res.get(i).movingleft = true;
-            } else {
+            }
+            else {
                 res.get(i).movingleft = false;
             }
         }

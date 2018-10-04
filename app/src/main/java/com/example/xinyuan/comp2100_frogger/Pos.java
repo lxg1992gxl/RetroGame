@@ -1,5 +1,7 @@
 package com.example.xinyuan.comp2100_frogger;
 
+import android.graphics.Canvas;
+
 public class Pos {
 
     float x, y;
@@ -20,7 +22,7 @@ public class Pos {
         return (float) Math.sqrt(dx*dx + dy*dy);
     }
 
-    public boolean rectCircleColliding(Frog f, Car c){
+    public boolean rectCircleColliding(Frog f, Car c) {
         float w = c.carWidth;
         float h = c.carHeight;
 
