@@ -32,18 +32,6 @@ public class Frog extends Sprite {
         }
     }
 
-    public boolean rectCircleIntersects(Wood w){
-        float width = w.woodWidth;
-        float height = w.woodHeight;
-
-        float fLeft = pos.x - FROGRADIUS;
-        float fRight = pos.x + FROGRADIUS;
-        float fTop = pos.y - FROGRADIUS;
-        float fBottom = pos.y + FROGRADIUS;
-
-        return !(fLeft >= w.pos.x+width || fRight <= w.pos.x || fTop >= w.pos.y +height || fBottom <= w.pos.y);
-//        return  (fLeft >= w.pos.x && fRight <= w.pos.x+width && fTop >= w.pos.y && fBottom <= w.pos.y +height);
-    }
 
     @Override
     public void draw(Canvas c, Paint p) {

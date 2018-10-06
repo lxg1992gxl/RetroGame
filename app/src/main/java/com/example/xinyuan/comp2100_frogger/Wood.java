@@ -8,6 +8,8 @@ public class Wood extends Sprite {
 
     float woodWidth = 100.0f;
     float woodHeight = 60.0f;
+    float xc;
+    float yc;
     boolean movingleft;
     int row;
 
@@ -21,8 +23,8 @@ public class Wood extends Sprite {
         int h = c.getHeight();
         int w = c.getWidth();
 
-        float xc = pos.x * w;
-        float yc = pos.y * h;
+        xc = pos.x * w;
+        yc = pos.y * h;
 
         p.setColor(Color.RED);
         p.setStrokeWidth(50.0f);

@@ -50,8 +50,7 @@ public class Game {
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f){
             frogDied = true;
             for (Wood w : woods ){
-                System.out.println(frog.rectCircleIntersects(w));
-                if (frog.rectCircleIntersects(w)){
+                if (frog.pos.rectCircleIntersects(frog, w)){
                     frogDied = false;
                     frog.attach(w);
                 }
@@ -60,6 +59,7 @@ public class Game {
             frog.attach(null);
         }
         frog.attached();
+        System.out.println(frog.xc);
 
         if (frogDied){
             frog.pos.y = 0.9f;

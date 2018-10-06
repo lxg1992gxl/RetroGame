@@ -22,6 +22,18 @@ public class Pos {
         return (float) Math.sqrt(dx*dx + dy*dy);
     }
 
+    public boolean rectCircleIntersects(Frog f, Wood w){
+        float width = w.woodWidth;
+        float height = w.woodHeight;
+
+        float fLeft = f.xc - f.FROGRADIUS;
+        float fRight = f.xc + f.FROGRADIUS;
+        float fTop = f.yc - f.FROGRADIUS;
+        float fBottom = f.yc + f.FROGRADIUS;
+
+        return !(fLeft >= w.xc+width || fRight <= w.xc || fTop >= w.yc + height || fBottom <= w.yc);
+    }
+
     public boolean rectCircleColliding(Frog f, Car c) {
         float w = c.carWidth;
         float h = c.carHeight;
