@@ -6,6 +6,8 @@ import android.graphics.Paint;
 
 public class Wood extends Sprite {
 
+    float woodWidth = 100.0f;
+    float woodHeight = 60.0f;
     boolean movingleft;
     int row;
 
@@ -25,8 +27,6 @@ public class Wood extends Sprite {
         p.setColor(Color.RED);
         p.setStrokeWidth(50.0f);
 
-        float woodWidth = 100.0f;
-        float woodHeight = 60.0f;
         c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
         }
 

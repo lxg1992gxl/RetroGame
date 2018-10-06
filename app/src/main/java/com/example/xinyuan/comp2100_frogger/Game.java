@@ -26,9 +26,9 @@ public class Game {
     // draw all the game
     public void draw(Canvas canvas, Paint paint) {
         river.draw(canvas, paint);
-        frog.draw(canvas, paint);
         cars.draw(canvas, paint);
         woods.draw(canvas, paint);
+        frog.draw(canvas, paint);
         score.draw(canvas, paint);
 
     }
@@ -46,6 +46,26 @@ public class Game {
         cars.updateCars(cars);
         woods.step();
         woods.updateWoods(woods);
+
+        if (frog.pos.y > 0.15f && frog.pos.y < 0.45f){
+            frogDied = true;
+            for (Wood w : woods ){
+                System.out.println(frog.rectCircleIntersects(w));
+                if (frog.rectCircleIntersects(w)){
+                    frogDied = false;
+                    frog.attach(w);
+                }
+            }
+        }else {
+            frog.attach(null);
+        }
+        frog.attached();
+
+        if (frogDied){
+            frog.pos.y = 0.9f;
+            frog.attach(null);
+            frogDied = false;
+        }
 
         if (frog.reachGoal()) {
             score.s++;
