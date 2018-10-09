@@ -22,12 +22,19 @@ public class Frog extends Sprite {
         attached = wood;
     }
 
+
+    //check if frog is on a wood
+    //stop frog if it is riding wood out of screen
     public void attached() {
         if (attached != null) {
             if (attached.movingleft) {
-                this.pos.x -= 0.025f;
+                if (pos.x >=0.11){
+                    this.pos.x -= 0.025f;
+                }
             } else {
-                this.pos.x += 0.025f;
+                if (pos.x <=0.89){
+                    this.pos.x += 0.025f;
+                }
             }
         }
     }

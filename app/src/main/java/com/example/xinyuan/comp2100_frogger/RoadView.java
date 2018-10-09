@@ -56,9 +56,13 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         float userX = event.getX();
         float userY = event.getY();
 
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            userX = event.getX();
+            userY = event.getY();
             game.touch(checkRegion(userX, userY));
         }
+
         invalidate();
         return true;
     }
@@ -79,6 +83,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         } else {
             return "GORIGHT";
         }
+
     }
 
     // step the view forward by one step - true is returned if more steps to go

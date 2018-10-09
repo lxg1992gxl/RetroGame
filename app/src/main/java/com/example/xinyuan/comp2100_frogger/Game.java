@@ -5,7 +5,8 @@ import android.graphics.Paint;
 
 public class Game {
 
-    private static final float FROGMOVE = 0.1f;
+    private static final float FROGMOVEX = 0.05f;
+    private static final float FROGMOVEY = 0.1f;
 
     private River river;
     private Frog frog;
@@ -88,16 +89,16 @@ public class Game {
             //limit the frog moving area
             //prevent it moving out of screen
             if (frog.pos.y > 0.11)
-                frog.pos.y -= FROGMOVE;
+                frog.pos.y -= FROGMOVEY;
         } else if (move == "GODOWN") {
             if (frog.pos.y < 0.89)
-                frog.pos.y += FROGMOVE;
+                frog.pos.y += FROGMOVEY;
         } else if (move == "GOLEFT") {
             if (frog.pos.x > 0.11)
-                frog.pos.x -= FROGMOVE;
+                frog.pos.x -= FROGMOVEX;
         } else if (move == "GORIGHT") {
             if (frog.pos.x < 0.89)
-                frog.pos.x += FROGMOVE;
+                frog.pos.x += FROGMOVEX;
         }
     }
 

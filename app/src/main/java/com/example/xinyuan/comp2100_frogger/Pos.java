@@ -1,6 +1,5 @@
 package com.example.xinyuan.comp2100_frogger;
 
-import android.graphics.Canvas;
 
 public class Pos {
 
