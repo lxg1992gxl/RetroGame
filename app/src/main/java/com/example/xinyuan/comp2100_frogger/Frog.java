@@ -63,6 +63,7 @@ public class Frog extends Sprite {
         c.drawCircle(xc, yc, FROGRADIUS, p);
     }
 
+    //not used
     public boolean hitby(Car c) {
         return (c.pos.rectCircleColliding(this, c));
     }

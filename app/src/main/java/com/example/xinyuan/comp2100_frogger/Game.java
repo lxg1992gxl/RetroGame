@@ -62,8 +62,8 @@ public class Game {
             frog.attach(null);
         }
         frog.attached();
-        //System.out.println(frog.xc);
 
+        //check if frog is dead
         if (frogDied) {
             frog.pos.replace();
             frog.attach(null);
@@ -71,19 +71,16 @@ public class Game {
         }
 
         //if frog reach to the other side of the river
-        //increase score and
-        //replace the frog
+        //increase score and replace the frog
         if (frog.reachGoal()) {
             score.score++;
             frog.pos.replace();
         }
 
-//         check if frog is hit by a car
-
+        //check if frog is hit by a car
         if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
-            //frogDied = true;
             for (Car c : cars) {
-                if (frog.pos.rectCircleColliding(frog,c)) {
+                if (frog.pos.rectCircleIntersect(frog,c)) {
                     frogDied = true;
                 }
             }

@@ -33,6 +33,22 @@ public class Pos {
         return !(fLeft >= w.xc + width || fRight <= w.xc || fTop >= w.yc + height || fBottom <= w.yc);
     }
 
+    //copied from upper
+    //change arguments for car using
+    //TODO anyone combine these two method together?
+    public boolean rectCircleIntersect(Frog f, Car c) {
+        float width = c.carWidth;
+        float height = c.carHeight;
+
+        float fLeft = f.xc - f.FROGRADIUS;
+        float fRight = f.xc + f.FROGRADIUS;
+        float fTop = f.yc - f.FROGRADIUS;
+        float fBottom = f.yc + f.FROGRADIUS;
+
+        return !(fLeft >= c.xc + width || fRight <= c.xc || fTop >= c.yc + height || fBottom <= c.yc);
+    }
+
+    //not used
     public boolean rectCircleColliding(Frog f, Car c) {
         float w = c.carWidth;
         float h = c.carHeight;
