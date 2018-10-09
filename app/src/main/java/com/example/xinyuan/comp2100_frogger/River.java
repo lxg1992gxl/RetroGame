@@ -6,9 +6,9 @@ import android.graphics.Paint;
 
 public class River extends Sprite {
 
-    public static final float STARTX = 0.0f;
-    public static final float STARTY = 0.15f;
-    public static final float ENDY = 0.45f;
+    private static final float STARTX = 0.0f;
+    private static final float STARTY = 0.15f;
+    private static final float ENDY = 0.45f;
 
 
     @Override

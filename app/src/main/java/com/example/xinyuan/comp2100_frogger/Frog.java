@@ -9,6 +9,12 @@ public class Frog extends Sprite {
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
     public static final float FROGRADIUS = 20;
+
+    public static final double LEFTLIMIT = 0.06;
+    public static final double RIGHTLIMIT = 0.94;
+    public static final double TOPLIMIT = 0.11;
+    public static final double BOTTOMLIMIT = 0.89;
+
     float xc, yc;
     int cH, cW;
     Wood attached = null;
@@ -28,11 +34,11 @@ public class Frog extends Sprite {
     public void attached() {
         if (attached != null) {
             if (attached.movingleft) {
-                if (pos.x >=0.11){
+                if (pos.x >= LEFTLIMIT){
                     this.pos.x -= 0.025f;
                 }
             } else {
-                if (pos.x <=0.89){
+                if (pos.x <= RIGHTLIMIT){
                     this.pos.x += 0.025f;
                 }
             }

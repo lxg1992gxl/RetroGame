@@ -88,16 +88,16 @@ public class Game {
         if (move == "GOUP") {
             //limit the frog moving area
             //prevent it moving out of screen
-            if (frog.pos.y > 0.11)
+            if (frog.pos.y > Frog.TOPLIMIT)
                 frog.pos.y -= FROGMOVEY;
         } else if (move == "GODOWN") {
-            if (frog.pos.y < 0.89)
+            if (frog.pos.y < Frog.BOTTOMLIMIT)
                 frog.pos.y += FROGMOVEY;
         } else if (move == "GOLEFT") {
-            if (frog.pos.x > 0.11)
+            if (frog.pos.x > Frog.LEFTLIMIT)
                 frog.pos.x -= FROGMOVEX;
         } else if (move == "GORIGHT") {
-            if (frog.pos.x < 0.89)
+            if (frog.pos.x < Frog.RIGHTLIMIT)
                 frog.pos.x += FROGMOVEX;
         }
     }
