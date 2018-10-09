@@ -54,7 +54,9 @@ public class Frog extends Sprite {
         return (c.pos.rectCircleColliding(this, c));
     }
 
-    //check if frog reach the goal
+
+    //check if frog reach the other side of the river
+    //if the frog reach the goal, return true
     public boolean reachGoal() {
         if (this.pos.y < 0.1) {
             return true;

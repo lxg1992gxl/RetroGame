@@ -4,9 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Score {
-    int s = 0;
+/**
+ * A integer can record how many times the frog successfully make through
+ * default shown on top left conner
+ */
 
+public class Score {
+    int score = 0;
 
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
@@ -18,6 +22,6 @@ public class Score {
         p.setColor(Color.BLACK);
         p.setTextSize(70);
 
-        c.drawText(String.valueOf(s), xc, yc, p);
+        c.drawText(String.valueOf(score), xc, yc, p);
     }
 }

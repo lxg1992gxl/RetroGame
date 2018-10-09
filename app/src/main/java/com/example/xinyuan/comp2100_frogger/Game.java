@@ -67,8 +67,11 @@ public class Game {
             frogDied = false;
         }
 
+        //if frog reach to the other side of the river
+        //increase score and
+        //replace the frog
         if (frog.reachGoal()) {
-            score.s++;
+            score.score++;
             frog.pos.y = 0.9f;
         }
 
@@ -82,6 +85,8 @@ public class Game {
 
     public void touch(String move) {
         if (move == "GOUP") {
+            //limit the frog moving area
+            //prevent it moving out of screen
             if (frog.pos.y > 0.11)
                 frog.pos.y -= FROGMOVE;
         } else if (move == "GODOWN") {
