@@ -13,11 +13,12 @@ public class Wood extends Sprite {
     boolean movingleft;
     int row;
 
-    public Wood(float x, float y, int row){
+    public Wood(float x, float y, int row) {
         this.pos = new Pos(x, y);
         this.row = row;
         movingleft = true;
     }
+
     @Override
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
@@ -30,7 +31,7 @@ public class Wood extends Sprite {
         p.setStrokeWidth(50.0f);
 
         c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
-        }
+    }
 
     public boolean outOfTheRoad() {
         if (movingleft) {

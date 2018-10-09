@@ -17,6 +17,6 @@ public class River extends Sprite {
         int w = c.getWidth();
 
         p.setColor(Color.BLUE);
-        c.drawRect(STARTX,STARTY * h,w,ENDY * h, p);
+        c.drawRect(STARTX, STARTY * h, w, ENDY * h, p);
     }
 }

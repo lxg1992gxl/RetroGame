@@ -16,7 +16,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Game game;
     Handler repaintHandler;
 
-    public RoadView(Context context,AttributeSet attrs) {
+    public RoadView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         paint = new Paint();
@@ -26,6 +26,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         repaintHandler.postDelayed(this, STEPDELAY);
 
     }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -46,7 +47,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         // left right line
         canvas.drawLine(0.5f * canvasW,canvasH * 0.35f,0.5f * canvasW,canvasH * 0.65f,paintGuidedLine);
         */
-        game.draw(canvas,paint);
+        game.draw(canvas, paint);
 
     }
 
@@ -56,7 +57,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         float userY = event.getY();
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            game.touch(checkRegion(userX,userY));
+            game.touch(checkRegion(userX, userY));
         }
         invalidate();
         return true;
@@ -75,8 +76,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         // pressing left side of middle region
         else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
             return "GOLEFT";
-        }
-        else {
+        } else {
             return "GORIGHT";
         }
     }

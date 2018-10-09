@@ -18,15 +18,15 @@ public class Frog extends Sprite {
         pos = new Pos(STARTX, STARTY);
     }
 
-    public void attach(Wood wood){
+    public void attach(Wood wood) {
         attached = wood;
     }
 
-    public void  attached(){
-        if (attached != null){
-            if (attached.movingleft){
+    public void attached() {
+        if (attached != null) {
+            if (attached.movingleft) {
                 this.pos.x -= 0.025f;
-            }else {
+            } else {
                 this.pos.x += 0.025f;
             }
         }

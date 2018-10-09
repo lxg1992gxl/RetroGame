@@ -47,21 +47,21 @@ public class Game {
         woods.step();
         woods.updateWoods(woods);
 
-        if (frog.pos.y > 0.15f && frog.pos.y < 0.45f){
+        if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
-            for (Wood w : woods ){
-                if (frog.pos.rectCircleIntersects(frog, w)){
+            for (Wood w : woods) {
+                if (frog.pos.rectCircleIntersects(frog, w)) {
                     frogDied = false;
                     frog.attach(w);
                 }
             }
-        }else {
+        } else {
             frog.attach(null);
         }
         frog.attached();
         System.out.println(frog.xc);
 
-        if (frogDied){
+        if (frogDied) {
             frog.pos.y = 0.9f;
             frog.attach(null);
             frogDied = false;
