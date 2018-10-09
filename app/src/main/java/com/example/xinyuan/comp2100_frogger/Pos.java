@@ -59,6 +59,12 @@ public class Pos {
         return (dx * dx + dy * dy <= (f.FROGRADIUS * f.FROGRADIUS));
     }
 
+    //reposition to start point
+    public void replace(){
+        this.x = 0.5f;
+        this.y = 0.9f;
+    }
+
 //    public static void main(String[] args) {
 //        Frog f = new Frog();
 //        Car c = new Car(0.5f,0.9f);
