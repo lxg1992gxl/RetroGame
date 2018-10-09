@@ -12,7 +12,7 @@ public class Game {
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    private boolean frogDied;
+    public static boolean frogDied;
     private Score score;
 
     public Game() {
@@ -48,6 +48,8 @@ public class Game {
         woods.step();
         woods.updateWoods(woods);
 
+        //return frog is dead when frog in river
+        //unless frog attached on a wood
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
@@ -60,10 +62,10 @@ public class Game {
             frog.attach(null);
         }
         frog.attached();
-        System.out.println(frog.xc);
+        //System.out.println(frog.xc);
 
         if (frogDied) {
-            frog.pos.y = 0.9f;
+            frog.pos.replace();
             frog.attach(null);
             frogDied = false;
         }
@@ -73,14 +75,19 @@ public class Game {
         //replace the frog
         if (frog.reachGoal()) {
             score.score++;
-            frog.pos.y = 0.9f;
+            frog.pos.replace();
         }
 
 //         check if frog is hit by a car
 
-//        if (frog.hitby(car)) {
-//                frogDied = true;
-//        }
+        if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
+            //frogDied = true;
+            for (Car c : cars) {
+                if (frog.pos.rectCircleColliding(frog,c)) {
+                    frogDied = true;
+                }
+            }
+        }
     }
 
 

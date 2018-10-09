@@ -63,6 +63,7 @@ public class Pos {
     public void replace(){
         this.x = 0.5f;
         this.y = 0.9f;
+        Game.frogDied = false;
     }
 
 //    public static void main(String[] args) {
