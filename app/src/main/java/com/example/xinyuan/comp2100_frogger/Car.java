@@ -16,7 +16,6 @@ public class Car extends Sprite {
     float xc, yc;
     int row;
 
-
     public Car(float x, float y, float carWidth, int row) {
         this.pos = new Pos(x, y);
         this.carWidth = carWidth;

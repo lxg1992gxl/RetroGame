@@ -19,6 +19,7 @@ public class Game {
     private Woods woods;
     public static boolean frogDied, won;
     private Score score;
+    public Lives lives;
 
 
     public Game() {
@@ -28,6 +29,7 @@ public class Game {
         woods = Woods.generateWoods();
         river = new River();
         score = new Score();
+        lives = new Lives();
         frogDied = false;
         won = false;
         currentPlace = "ROAD";
@@ -40,6 +42,7 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
+        lives.draw(canvas,paint);
     }
 
     public boolean hasWon() {
@@ -83,16 +86,6 @@ public class Game {
         }
 
 
-
-
-
-        //check if frog is dead
-        if (frogDied) {
-            frog.pos.replace();
-            frog.attach(null);
-            frogDied = false;
-        }
-
         //if frog reach to the other side of the river
         //increase score and replace the frog
         if (frog.reachGoal()) {
@@ -118,6 +111,14 @@ public class Game {
                 }
             }
         }
+        //check if frog is dead, if so, lives -1 and back to start position.
+        if (frogDied) {
+            lives.lives--;
+            frog.pos.replace();
+            frog.attach(null);
+            frogDied = false;
+        }
+
     }
 
 
