@@ -21,7 +21,6 @@ public class BGM {
             return mp;
         }
         else if (bgm == "GG") {
-            System.out.println("GGGGG!!!!");
             mp = MediaPlayer.create(c, R.raw.gg);
             return mp;
         }

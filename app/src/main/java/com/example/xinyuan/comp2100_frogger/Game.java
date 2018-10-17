@@ -126,7 +126,6 @@ public class Game {
         }
     }
 
-
     public void touch(String move) {
         if (move == "GOUP") {
             //limit the frog moving area

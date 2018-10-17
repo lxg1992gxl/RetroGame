@@ -120,6 +120,10 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 ////            notifyGameOver();
 //            return false;
 //        }
+
+        /*
+        checking special cases so that correct BGM can be play 
+        */
         if (!Game.won && vicPlaying && !roadPlaying) {
             BGM.stopPlaying(mp);
             mp = BGM.play(this.getContext(),"ROAD");
@@ -162,8 +166,8 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         }
     }
 
+    // play different BGM based on the current frog location
     public void playBGM() {
-        System.out.println(Game.currentPlace);
         if (Game.currentPlace == "ROAD") {
             if (vicPlaying) {
                 BGM.stopPlaying(mp);
