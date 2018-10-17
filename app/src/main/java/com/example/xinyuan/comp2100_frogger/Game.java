@@ -32,6 +32,7 @@ public class Game {
         lives = new Lives();
         frogDied = false;
         won = false;
+
         currentPlace = "ROAD";
     }
 
@@ -75,16 +76,34 @@ public class Game {
         frog.attachOn();
 
         System.out.println(frog.pos.y);
-        if (frog.pos.y <= 0.1f) {
+        if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.5f) {
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
             currentPlace = "RIVER";
         }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.9f) {
+        else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
             currentPlace = "ROAD";
         }
 
+        //check if frog is dead
+        if (frogDied) {
+            if (!won) {
+                lives.lives--;
+                won = true;
+            }
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    frog.pos.replace();
+                    frog.attach(null);
+                    frogDied = false;
+                    won = false;
+                }
+            }, 1000);
+
+        }
 
         //if frog reach to the other side of the river
         //increase score and replace the frog
@@ -111,16 +130,7 @@ public class Game {
                 }
             }
         }
-        //check if frog is dead, if so, lives -1 and back to start position.
-        if (frogDied) {
-            lives.lives--;
-            frog.pos.replace();
-            frog.attach(null);
-            frogDied = false;
-        }
-
     }
-
 
     public void touch(String move) {
         if (move == "GOUP") {

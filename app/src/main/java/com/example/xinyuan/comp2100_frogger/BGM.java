@@ -20,8 +20,8 @@ public class BGM {
             mp = MediaPlayer.create(c, R.raw.victory);
             return mp;
         }
-        else if (bgm == "DROWN") {
-            mp = MediaPlayer.create(c, R.raw.pool);
+        else if (bgm == "GG") {
+            mp = MediaPlayer.create(c, R.raw.gg);
             return mp;
         }
         return null;

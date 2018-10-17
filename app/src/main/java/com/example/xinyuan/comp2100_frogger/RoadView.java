@@ -1,21 +1,15 @@
 package com.example.xinyuan.comp2100_frogger;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-
 import java.util.Timer;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
@@ -27,7 +21,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Handler repaintHandler;
     ArrayList<GameOver> observers;
     MediaPlayer mp;
-    boolean riverPlaying, roadPlaying, vicPlaying;
+    boolean riverPlaying, roadPlaying, vicPlaying, ggPlaying;
 
 
     public RoadView(Context context, AttributeSet attrs) {
@@ -41,7 +35,9 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, STEPDELAY);
         mp = BGM.play(context,"ROAD");
+        mp.start();
         roadPlaying = true;
+        riverPlaying = vicPlaying = ggPlaying = false;
 
     }
 
@@ -64,6 +60,86 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             game.touch(checkRegion(userX, userY));
         }
 
+
+        playBGM();
+        invalidate();
+        return true;
+    }
+
+    // check which region is the user pressing, and return a correct move instruction to the frog
+    private String checkRegion(float x, float y) {
+        // pressing upper region
+        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
+            return "GOUP";
+        }
+        // pressing lower region
+        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
+            return "GODOWN";
+        }
+        // pressing left side of middle region
+        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
+            return "GOLEFT";
+        } else {
+            return "GORIGHT";
+        }
+
+    }
+
+    // step the view forward by one step - true is returned if more steps to go
+    public boolean step() {
+        game.step();
+        if(game.lives.lives==0){
+            notifyGameOver();
+            return false;
+        }
+
+        /*
+        checking special cases so that correct BGM can be play
+        */
+        if (!Game.won && vicPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"ROAD");
+            mp.start();
+            vicPlaying = false;
+            roadPlaying = true;
+        }
+        else if (Game.frogDied && !ggPlaying && !riverPlaying && roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"GG");
+            mp.setVolume(1,1);
+            mp.start();
+            roadPlaying = false;
+            ggPlaying = true;
+        }
+        else if (!Game.frogDied && ggPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"ROAD");
+            mp.start();
+            roadPlaying = true;
+            ggPlaying = false;
+            riverPlaying = false;
+        }
+        else if (Game.frogDied && !ggPlaying && riverPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"GG");
+            mp.setVolume(1,1);
+            mp.start();
+            riverPlaying = false;
+            ggPlaying = true;
+        }
+        this.invalidate();
+        return true;
+    }
+
+    @Override
+    public void run() {
+        if (step()) {
+            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
+        }
+    }
+
+    // play different BGM based on the current frog location
+    public void playBGM() {
         if (Game.currentPlace == "ROAD") {
             if (vicPlaying) {
                 BGM.stopPlaying(mp);
@@ -107,39 +183,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             }
 
         }
-
-        invalidate();
-        return true;
-    }
-
-    // check which region is the user pressing, and return a correct move instruction to the frog
-    private String checkRegion(float x, float y) {
-        // pressing upper region
-        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
-            return "GOUP";
-        }
-        // pressing lower region
-        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
-            return "GODOWN";
-        }
-        // pressing left side of middle region
-        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
-            return "GOLEFT";
-        } else {
-            return "GORIGHT";
-        }
-
-    }
-
-    // Step the view forward by one step - if live is 0, game over, else move forward.
-    public boolean step() {
-        game.step();
-        if(game.lives.lives==0){
-            notifyGameOver();
-            return false;
-        }
-        this.invalidate();
-        return true;
     }
 
     //Notify the observers game over.
@@ -147,13 +190,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         for (GameOver o: observers) o.gameOver();
     }
 
-
-    @Override
-    public void run() {
-        if (step()) {
-            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
-        }
-    }
     //Register observers.
     public void registerGameOver(GameOver o){
         observers.add(o);
