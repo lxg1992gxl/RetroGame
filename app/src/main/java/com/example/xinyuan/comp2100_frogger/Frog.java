@@ -3,9 +3,8 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 
-public class Frog extends Sprite {
+public class Frog extends Sprite{
 
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
@@ -16,7 +15,6 @@ public class Frog extends Sprite {
     public static final double TOPLIMIT = 0.11;
     public static final double BOTTOMLIMIT = 0.89;
 
-
     float xc, yc;
     int cH, cW;
     Wood attached = null;
@@ -26,22 +24,22 @@ public class Frog extends Sprite {
         pos = new Pos(STARTX, STARTY);
     }
 
-    public void attach(Wood wood) {
+    public void attach(Wood wood){
         attached = wood;
     }
 
 
-    //check if frog is on a wood
+    //Attach the frog on a wood (so that frog can move along with it)
     //stop frog if it is riding wood out of screen
-    public void attached() {
+    public void attachOn() {
         if (attached != null) {
             if (attached.movingleft) {
                 if (pos.x >= LEFTLIMIT){
-                    this.pos.x -= 0.025f;
+                    this.pos.x -= Woods.speed;
                 }
             } else {
                 if (pos.x <= RIGHTLIMIT){
-                    this.pos.x += 0.025f;
+                    this.pos.x += Woods.speed;
                 }
             }
         }
@@ -61,10 +59,16 @@ public class Frog extends Sprite {
         yc = pos.y * h;
 
         p.setColor(Color.GREEN);
-        c.drawCircle(xc, yc, FROGRADIUS, p);
-//        RectF frog = new RectF (xc,yc,xc+FROGRADIUS,yc+FROGRADIUS);
+
+        c.drawCircle(xc,yc,FROGRADIUS,p);
 
     }
+
+    //not used
+    public boolean hitby(Car c) {
+        return (c.pos.hitByCar(this,c));
+    }
+
 
     //check if frog reach the other side of the river
     //if the frog reach the goal, return true

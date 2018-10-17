@@ -21,11 +21,9 @@ public class Car extends Sprite {
     int row;
     Random random;
 
-
-
-
-    public Car(float x, float y, int row) {
+    public Car(float x, float y, float carWidth, int row) {
         this.pos = new Pos(x, y);
+        this.carWidth = carWidth;
         this.row = row;
         movingleft = true;
     }
@@ -34,11 +32,15 @@ public class Car extends Sprite {
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
+
         p.setColor(Color.BLACK);
 
         xc = pos.x * w;
         yc = pos.y * h;
+
         random = new Random();
+//        float carWidth = random.nextInt(120);
+
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
 //        RectF car = new RectF (xc,yc,xc+carWidth,yc+carHeight);
 //        c.drawBitmap(RoadView.carImage,null,car,p);
@@ -57,5 +59,4 @@ public class Car extends Sprite {
         }
         return false;
     }
-
 }

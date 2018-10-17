@@ -31,16 +31,19 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void easyClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        Game.gameMode = "EASY";
         startActivity(intent);
     }
 
     public void mediumClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        Game.gameMode = "MEDIUM";
         startActivity(intent);
     }
 
     public void hardClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        Game.gameMode = "HARD";
         startActivity(intent);
     }
 

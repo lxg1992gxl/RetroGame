@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 public class GameActivity extends AppCompatActivity implements GameOver{
     Dialog restart;

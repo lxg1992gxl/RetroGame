@@ -7,6 +7,8 @@ public class Game {
 
     private static final float FROGMOVEX = 0.05f;
     private static final float FROGMOVEY = 0.1f;
+    public static String gameMode = "EASY";   // default game mode
+    public static String currentPlace;
 
     private River river;
     private Frog frog;
@@ -16,15 +18,17 @@ public class Game {
     private Score score;
     public Lives lives;
 
+
     public Game() {
+        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
-        woods = Woods.manyWoods();
+        woods = Woods.generateWoods();
         river = new River();
         score = new Score();
         lives = new Lives();
         frogDied = false;
-
+        currentPlace = "ROAD";
     }
 
     // draw all the game
@@ -34,10 +38,16 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
+    }
         lives.draw(canvas,paint);
 
+    public boolean hasWon() {
+        return !frogDied;
     }
 
+    public boolean carHit() {
+        return frogDied;
+    }
 
     public void step() {
         cars.step();
@@ -51,7 +61,7 @@ public class Game {
             frogDied = true;
             lives.lives--;
             for (Wood w : woods) {
-                if (frog.pos.rectCircleIntersects(frog, w)) {
+                if (frog.pos.attachedOnWoods(frog, w)) {
                     frogDied = false;
                     frog.attach(w);
                 }
@@ -59,7 +69,22 @@ public class Game {
         } else {
             frog.attach(null);
         }
-        frog.attached();
+        frog.attachOn();
+
+        System.out.println(frog.pos.y);
+        if (frog.pos.y <= 0.1f) {
+            currentPlace = "VIC";
+        }
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.5f) {
+            currentPlace = "RIVER";
+        }
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.9f) {
+            currentPlace = "ROAD";
+        }
+
+
+
+
 
         //check if frog is dead
         if (frogDied) {
@@ -86,7 +111,6 @@ public class Game {
         }
 
     }
-
 
 
     public void touch(String move) {
