@@ -48,25 +48,15 @@ public class Frog extends Sprite{
 
     @Override
     public void draw(Canvas c, Paint p) {
-//        System.out.println("x is " + xc + "and yc is " + yc);
         int h = c.getHeight();
         int w = c.getWidth();
-
         cH = h;
         cW = w;
-
         xc = pos.x * w;
         yc = pos.y * h;
-
         p.setColor(Color.GREEN);
-
         c.drawCircle(xc,yc,FROGRADIUS,p);
 
-    }
-
-    //not used
-    public boolean hitby(Car c) {
-        return (c.pos.hitByCar(this,c));
     }
 
 

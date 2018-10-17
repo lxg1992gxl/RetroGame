@@ -20,8 +20,8 @@ public class GameActivity extends AppCompatActivity implements GameOver{
         roadView.registerGameOver(this);
     }
 
-
     @Override
+    //A dialog shown when game over.
     public void gameOver() {
         restart = new Dialog(this);
         restart.findViewById(R.id.restart);
@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity implements GameOver{
         restart.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         restart.show();
     }
-
+    //Return to welcome activity to restart the game.
     public void restartClick(View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);

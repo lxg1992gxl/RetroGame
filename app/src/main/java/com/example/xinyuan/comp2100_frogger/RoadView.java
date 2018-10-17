@@ -30,9 +30,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Timer soundTimer;
     Handler repaintHandler;
     ArrayList<GameOver> observers;
-    public static Bitmap carImage;
-    public static Bitmap riverImage;
-    public static Bitmap woodImage;
     MediaPlayer mp;
     boolean riverPlaying, roadPlaying, vicPlaying;
 
@@ -47,40 +44,15 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         observers = new ArrayList<>();
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, STEPDELAY);
-
-//        road= MediaPlayer.create(context, R.raw.road);
-//        river = MediaPlayer.create(context, R.raw.river);
-//        victory = MediaPlayer.create(context,R.raw.victory);
-//        frogDrowned = MediaPlayer.create(context, R.raw.);
-//        road.start();
         mp = BGM.play(context,"ROAD");
         roadPlaying = true;
 
-        carImage = BitmapFactory.decodeResource(getResources(),R.drawable.car);
-        riverImage = BitmapFactory.decodeResource(getResources(), R.drawable.river);
-        woodImage = BitmapFactory.decodeResource(getResources(), R.drawable.wood);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //super.onDraw(canvas);
-
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
-        /*
-        // line showing UP DOWN LEFT RIGHT region
-        // uncomment this to see the control regions
-
-        Paint paintGuidedLine = new Paint();
-        paintGuidedLine.setStrokeWidth(10);
-        paintGuidedLine.setColor(Color.RED);
-        // upper line
-        canvas.drawLine(0,canvasH * 0.35f,canvasW, canvasH * 0.35f, paintGuidedLine);
-        // lower line
-        canvas.drawLine(0,canvasH * 0.65f,canvasW, canvasH * 0.65f, paintGuidedLine);
-        // left right line
-        canvas.drawLine(0.5f * canvasW,canvasH * 0.35f,0.5f * canvasW,canvasH * 0.65f,paintGuidedLine);
-        */
         game.draw(canvas, paint);
 
     }
@@ -90,17 +62,11 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         float userX;
         float userY;
 
-
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             userX = event.getX();
             userY = event.getY();
             game.touch(checkRegion(userX, userY));
         }
-
-        /*if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
-
-            game.touch(checkRegion(userX, userY));
-        }*/
 
         if (Game.currentPlace == "ROAD") {
             if (!roadPlaying) {
@@ -132,8 +98,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
         }
 
-        System.out.println(Game.currentPlace);
-
         invalidate();
         return true;
     }
@@ -157,7 +121,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
     }
 
-    // step the view forward by one step - true is returned if more steps to go
+    // Step the view forward by one step - if live is 0, game over, else move forward.
     public boolean step() {
         game.step();
         if(game.lives.lives==0){
@@ -168,7 +132,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         return true;
     }
 
-
+    //Notify the observers game over.
     private void notifyGameOver(){
         for (GameOver o: observers) o.gameOver();
     }
@@ -180,7 +144,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             repaintHandler.postDelayed(this, RoadView.STEPDELAY);
         }
     }
-
+    //Register observers.
     public void registerGameOver(GameOver o){
         observers.add(o);
     }

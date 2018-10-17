@@ -3,7 +3,7 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
+//Initialize number of lives.
 public class Lives {
     int lives =3;
     public void draw(Canvas c, Paint p) {
@@ -15,7 +15,6 @@ public class Lives {
 
         p.setColor(Color.RED);
         p.setTextSize(70);
-
         c.drawText(String.valueOf(lives), xc, yc, p);
     }
 
