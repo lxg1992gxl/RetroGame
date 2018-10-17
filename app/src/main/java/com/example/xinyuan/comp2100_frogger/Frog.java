@@ -12,10 +12,12 @@ public class Frog extends Sprite{
     float xc, yc;
     boolean initialization = true;
     Wood attached = null;
+    int h, w;
 
 
     public Frog() {
         pos = new Pos(STARTX, STARTY);
+
     }
 
     public void attach(Wood wood){
@@ -32,7 +34,8 @@ public class Frog extends Sprite{
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
-
+        this.w =w;
+        this.h = h;
         xc = pos.x * w;
         yc = pos.y * h;
 //        System.out.println("x is " + xc + "and yc is " + yc);

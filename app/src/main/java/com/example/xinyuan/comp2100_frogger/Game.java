@@ -9,7 +9,6 @@ public class Game {
 
     private River river;
     private Frog frog;
-    private Car car;
     private Cars cars;
     private Woods woods;
     private boolean frogDied;
@@ -45,10 +44,13 @@ public class Game {
         woods.updateWoods(woods);
 
 //         check if frog is hit by a car
+        for (Car car : cars){
+            if (frog.hitby(car)) {
+                frogDied = true;
+            }
+        }
 
-//        if (frog.hitby(car)) {
-//                frogDied = true;
-//        }
+
     }
 
 

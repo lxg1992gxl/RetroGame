@@ -9,11 +9,6 @@ public class Pos {
         this.y = y;
     }
 
-    public Pos(Pos p) {
-        this.x = p.x;
-        this.y = p.y;
-    }
-
     public float distance(Pos p) {
         float dx = x - p.x;
         float dy = y - p.y;
