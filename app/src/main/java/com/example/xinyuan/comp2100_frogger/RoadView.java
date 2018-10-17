@@ -2,14 +2,10 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.method.KeyListener;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -97,6 +93,13 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(),"ROAD");
                 mp.start();
+                riverPlaying = false;
+            }
+            if (vicPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(),"ROAD");
+                mp.start();
+                vicPlaying = false;
             }
 
         } else if (Game.currentPlace == "RIVER") {
@@ -113,6 +116,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "VIC");
                 mp.start();
+                vicPlaying = true;
             }
 
         }
