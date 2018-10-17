@@ -7,7 +7,8 @@ public class Game {
 
     private static final float FROGMOVEX = 0.05f;
     private static final float FROGMOVEY = 0.1f;
-    public static String gameMode = "EASY";
+    public static String gameMode = "EASY";   // default game mode
+    public static String currentPlace;
 
     private River river;
     private Frog frog;
@@ -25,6 +26,7 @@ public class Game {
         river = new River();
         score = new Score();
         frogDied = false;
+        currentPlace = "ROAD";
     }
 
     // draw all the game
@@ -64,6 +66,21 @@ public class Game {
             frog.attach(null);
         }
         frog.attachOn();
+
+        System.out.println(frog.pos.y);
+        if (frog.pos.y <= 0.1f) {
+            currentPlace = "VIC";
+        }
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.5f) {
+            currentPlace = "RIVER";
+        }
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.9f) {
+            currentPlace = "ROAD";
+        }
+
+
+
+
 
         //check if frog is dead
         if (frogDied) {
@@ -107,6 +124,5 @@ public class Game {
                 frog.pos.x += FROGMOVEX;
         }
     }
-
 }
 

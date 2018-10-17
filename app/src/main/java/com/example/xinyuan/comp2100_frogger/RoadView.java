@@ -3,17 +3,24 @@ package com.example.xinyuan.comp2100_frogger;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Timer;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
     public static final int STEPDELAY = 100;
     float canvasH, canvasW;
     Paint paint;
     Game game;
+    Timer soundTimer;
     Handler repaintHandler;
+    MediaPlayer mp;
+    boolean riverPlaying, roadPlaying, vicPlaying;
+
 
     public RoadView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -21,8 +28,17 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         paint = new Paint();
         game = new Game();
         this.setOnTouchListener(this);
+        soundTimer = new Timer();
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, STEPDELAY);
+
+//        road= MediaPlayer.create(context, R.raw.road);
+//        river = MediaPlayer.create(context, R.raw.river);
+//        victory = MediaPlayer.create(context,R.raw.victory);
+//        frogDrowned = MediaPlayer.create(context, R.raw.);
+//        road.start();
+        mp = BGM.play(context,"ROAD");
+        roadPlaying = true;
 
     }
 
@@ -52,8 +68,8 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        float userX ;
-        float userY ;
+        float userX;
+        float userY;
 
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -67,10 +83,41 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             game.touch(checkRegion(userX, userY));
         }*/
 
+        if (Game.currentPlace == "ROAD") {
+            if (!roadPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(), "ROAD");
+                mp.start();
+            }
+            if (riverPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(),"ROAD");
+                mp.start();
+            }
+
+        } else if (Game.currentPlace == "RIVER") {
+            if (roadPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(), "RIVER");
+                mp.start();
+                roadPlaying = false;
+                riverPlaying = true;
+            }
+        }
+        else if (Game.currentPlace == "VIC") {
+            if (riverPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(), "VIC");
+                mp.start();
+            }
+
+        }
+
+        System.out.println(Game.currentPlace);
+
         invalidate();
         return true;
     }
-
 
     // check which region is the user pressing, and return a correct move instruction to the frog
     private String checkRegion(float x, float y) {
@@ -112,5 +159,4 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             repaintHandler.postDelayed(this, RoadView.STEPDELAY);
         }
     }
-
 }

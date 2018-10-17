@@ -4,11 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.util.Random;
-
 public class Car extends Sprite {
 
-    float carWidth = 100.0f;
+    float carWidth;
     float carHeight = 60.0f;
 
     boolean movingleft;
