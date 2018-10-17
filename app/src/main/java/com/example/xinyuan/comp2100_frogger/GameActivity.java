@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class GameActivity extends AppCompatActivity implements GameOver{
+public class GameActivity extends AppCompatActivity implements GameOver {
     Dialog restart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class GameActivity extends AppCompatActivity implements GameOver{
         restart.show();
         BGM.stopPlaying(RoadView.mp);
     }
+
     //Return to welcome activity to restart the game.
     public void restartClick(View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);

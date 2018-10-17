@@ -33,7 +33,7 @@ public class Pos {
         float w = c.carWidth;
         float h = c.carHeight;
 
-        float distX = Math.abs(f.xc- c.xc - w / 2);
+        float distX = Math.abs(f.xc - c.xc - w / 2);
         float distY = Math.abs(f.yc - c.yc - h / 2);
 
         if (distX > (w / 2 + f.FROGRADIUS)) {
@@ -54,7 +54,7 @@ public class Pos {
     }
 
     //reposition to start point
-    public void replace(){
+    public void replace() {
         this.x = 0.5f;
         this.y = 0.9f;
         Game.frogDied = false;

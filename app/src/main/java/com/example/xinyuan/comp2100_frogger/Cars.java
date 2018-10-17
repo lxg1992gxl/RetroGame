@@ -26,7 +26,7 @@ public class Cars extends ArrayList<Car> {
         int i = 0;
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
             for (int numberOfCar = 0; numberOfCar < MAXCAR; numberOfCar++) {
-                cars.add(new Car(carPos[i][0], y, carPos[i][1],row));
+                cars.add(new Car(carPos[i][0], y, carPos[i][1], row));
                 i++;
             }
             row++;
@@ -43,15 +43,15 @@ public class Cars extends ArrayList<Car> {
 
     public static Car generateNewCar(float carWidth, int row) {
         if (row == 1) {
-            Car c = new Car(1.0f, UPPERY, carWidth,1);
+            Car c = new Car(1.0f, UPPERY, carWidth, 1);
             c.movingleft = true;
             return c;
         } else if (row == 3) {
-            Car c = new Car(1.0f, UPPERY + DOWNGAP + DOWNGAP,carWidth, 3);
+            Car c = new Car(1.0f, UPPERY + DOWNGAP + DOWNGAP, carWidth, 3);
             c.movingleft = true;
             return c;
         } else {
-            Car c = new Car(0.0f, UPPERY + DOWNGAP,carWidth,2);
+            Car c = new Car(0.0f, UPPERY + DOWNGAP, carWidth, 2);
             c.movingleft = false;
             return c;
         }
@@ -67,22 +67,17 @@ public class Cars extends ArrayList<Car> {
             if (c.movingleft) {
                 if (Game.gameMode == "EASY") {
                     c.pos.x -= EASYMODECARSPEED;
-                }
-                else if (Game.gameMode == "MEDIUM") {
+                } else if (Game.gameMode == "MEDIUM") {
                     c.pos.x -= MIDMODECARSPEED;
-                }
-                else {
+                } else {
                     c.pos.x -= HARDMODECARSPEED;
                 }
-            }
-            else {
+            } else {
                 if (Game.gameMode == "EASY") {
                     c.pos.x += EASYMODECARSPEED;
-                }
-                else if (Game.gameMode == "MEDIUM") {
+                } else if (Game.gameMode == "MEDIUM") {
                     c.pos.x += MIDMODECARSPEED;
-                }
-                else {
+                } else {
                     c.pos.x += HARDMODECARSPEED;
                 }
             }
@@ -97,7 +92,7 @@ public class Cars extends ArrayList<Car> {
                 int row = c.row;
                 float carWidth = c.carWidth;
                 ci.remove();
-                ci.add(generateNewCar(carWidth,row));
+                ci.add(generateNewCar(carWidth, row));
             }
         }
     }

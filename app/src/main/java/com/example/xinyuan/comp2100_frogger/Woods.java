@@ -26,7 +26,7 @@ public class Woods extends ArrayList<Wood> {
 
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
             for (int c = 1; c <= MAXWOOD; c++) {
-                res.add(new Wood(woodPosition[i][0], y, woodPosition[i][1],rows));
+                res.add(new Wood(woodPosition[i][0], y, woodPosition[i][1], rows));
                 i++;
             }
             rows++;
@@ -44,15 +44,15 @@ public class Woods extends ArrayList<Wood> {
 
     public static Wood generateNewWoods(float woodWidth, int row) {
         if (row == 1) {
-            Wood c = new Wood(1.0f, UPPERY,woodWidth,1);
+            Wood c = new Wood(1.0f, UPPERY, woodWidth, 1);
             c.movingleft = true;
             return c;
         } else if (row == 3) {
-            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP,woodWidth,3);
+            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP, woodWidth, 3);
             c.movingleft = true;
             return c;
         } else {
-            Wood c = new Wood(0.0f, UPPERY + DOWNGAP,woodWidth,2);
+            Wood c = new Wood(0.0f, UPPERY + DOWNGAP, woodWidth, 2);
             c.movingleft = false;
             return c;
         }
@@ -63,11 +63,11 @@ public class Woods extends ArrayList<Wood> {
     }
 
     public void step() {
-        if (Game.gameMode == "EASY"){
+        if (Game.gameMode == "EASY") {
             speed = EASYMODEWOODSPEED;
-        }else if (Game.gameMode == "MEDIUM" ){
+        } else if (Game.gameMode == "MEDIUM") {
             speed = MIDMODEWOODSPEED;
-        }else if (Game.gameMode == "HARD"){
+        } else if (Game.gameMode == "HARD") {
             speed = HARDMODEWOODSPEED;
         }
         for (Wood c : this) {

@@ -43,7 +43,7 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
-        lives.draw(canvas,paint);
+        lives.draw(canvas, paint);
     }
 
     public boolean hasWon() {
@@ -78,11 +78,9 @@ public class Game {
         System.out.println(frog.pos.y);
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
-        }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
+        } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
             currentPlace = "RIVER";
-        }
-        else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
+        } else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
             currentPlace = "ROAD";
         }
 
@@ -125,7 +123,7 @@ public class Game {
         //check if frog is hit by a car
         if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
             for (Car c : cars) {
-                if (frog.pos.hitByCar(frog,c)) {
+                if (frog.pos.hitByCar(frog, c)) {
                     frogDied = true;
                 }
             }
