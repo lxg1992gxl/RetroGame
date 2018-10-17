@@ -30,12 +30,12 @@ public class Wood extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
 
-        p.setColor(Color.rgb(222,184,135));
+        p.setColor(Color.rgb(222, 184, 135));
         p.setStrokeWidth(50.0f);
 
         //draw wood in round rec
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            c.drawRoundRect(xc, yc, xc + woodWidth, yc + woodHeight,round,round,p);
+            c.drawRoundRect(xc, yc - woodHeight / 2, xc + woodWidth, yc + woodHeight / 2, round, round, p);
         }
     }
 
