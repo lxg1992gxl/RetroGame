@@ -11,7 +11,7 @@ public class Cars extends ArrayList<Car> {
 
     private static final float DOWNGAP = 0.1f;
     private static final int MAXCAR = 3;
-    private static final float UPPERY = 0.58f;
+    private static final float UPPERY = 0.6f;
     private static final float LOWERY = 0.88f;
 
     public static Cars generateCar() {

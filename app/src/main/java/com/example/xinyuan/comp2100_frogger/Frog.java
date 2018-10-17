@@ -55,6 +55,10 @@ public class Frog extends Sprite{
 
         c.drawCircle(xc,yc,FROGRADIUS,p);
 
+//        System.out.println(c.getHeight());
+//        System.out.println(pos.y);
+        System.out.println(yc);
+
     }
 
     //not used

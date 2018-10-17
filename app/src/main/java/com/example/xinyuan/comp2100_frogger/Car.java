@@ -29,7 +29,14 @@ public class Car extends Sprite {
         p.setColor(Color.BLACK);
         xc = pos.x * w;
         yc = pos.y * h;
-        c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
+        c.drawRect(xc, yc- carHeight/2, xc + carWidth, yc + carHeight/2, p);
+
+//        System.out.println("car");
+//        System.out.println(c.getHeight());
+//        System.out.println(pos.y);
+
+//        System.out.println(yc);
+        //System.out.println(Cars.UPPERY+Cars.DOWNGAP);
 
     }
 
