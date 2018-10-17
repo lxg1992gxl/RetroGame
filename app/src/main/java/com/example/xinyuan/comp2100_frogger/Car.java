@@ -8,10 +8,14 @@ public class Car extends Sprite {
 
     float carWidth;
     float carHeight = 60.0f;
+    float carHeadWidth = 30.0f;
+    float carHeadHeight = 40.0f;
+    float carHeadGap = 5.0f;
 
     boolean movingleft;
     float xc, yc;
     int row;
+
 
     public Car(float x, float y, float carWidth, int row) {
         this.pos = new Pos(x, y);
@@ -27,7 +31,19 @@ public class Car extends Sprite {
         p.setColor(Color.BLACK);
         xc = pos.x * w;
         yc = pos.y * h;
-        c.drawRect(xc, yc- carHeight/2, xc + carWidth, yc + carHeight/2, p);
+
+        if (movingleft){
+            //draw body
+            c.drawRect(xc+ carHeadWidth, yc- carHeight/2, xc + carWidth, yc + carHeight/2, p);
+            //draw head
+            c.drawRect(xc, yc- carHeadHeight /2, xc+ carHeadWidth-carHeadGap, yc + carHeadHeight /2, p);
+        }else{
+            //draw body
+            c.drawRect(xc, yc- carHeight/2, xc+ carWidth-carHeadWidth-carHeadGap, yc + carHeight/2, p);
+            //draw head
+            c.drawRect(xc+ carWidth-carHeadWidth, yc- carHeadHeight /2, xc+ carWidth, yc + carHeadHeight /2, p);
+
+        }
 
 //        System.out.println("car");
 //        System.out.println(c.getHeight());
