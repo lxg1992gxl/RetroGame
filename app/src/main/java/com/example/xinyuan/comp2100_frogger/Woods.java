@@ -11,44 +11,44 @@ public class Woods extends ArrayList<Wood> {
 
     private static final float DOWNGAP = 0.1f;
     private static final int MAXWOOD = 3;
-    private static final float MINGAP = 40.0f;
     private static final float UPPERY = 0.18f;
     private static final float LOWERY = 0.38f;
+    static float speed = 0.015f;
 
     public static Woods manyWoods() {
         Woods res = new Woods();
         int rows = 1;
+        float[][] woodPosition = WoodPositions.getPosition();
+        int i = 0;
 
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
             for (int c = 1; c <= MAXWOOD; c++) {
-                Random random = new Random();
-                float xRandom = random.nextFloat();
-                float x = xRandom;
-                res.add(new Wood(x, y, rows));
+                res.add(new Wood(woodPosition[i][0], y, woodPosition[i][1],rows));
+                i++;
             }
             rows++;
         }
-        for (int i = 0; i < res.size(); i++) {
-            if (i < 3 || i >= 6) {
-                res.get(i).movingleft = true;
+        for (int j = 0; j < res.size(); j++) {
+            if (j < 3 || j >= 6) {
+                res.get(j).movingleft = true;
             } else {
-                res.get(i).movingleft = false;
+                res.get(j).movingleft = false;
             }
         }
         return res;
     }
 
-    public static Wood generateWood(int row) {
+    public static Wood generateWood(float woodWidth, int row) {
         if (row == 1) {
-            Wood c = new Wood(1.0f, UPPERY, 1);
+            Wood c = new Wood(1.0f, UPPERY,woodWidth, 1);
             c.movingleft = true;
             return c;
         } else if (row == 3) {
-            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP, 3);
+            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP,woodWidth, 3);
             c.movingleft = true;
             return c;
         } else {
-            Wood c = new Wood(0.0f, UPPERY + DOWNGAP, 2);
+            Wood c = new Wood(0.0f, UPPERY + DOWNGAP,woodWidth,2);
             c.movingleft = false;
             return c;
         }
@@ -61,9 +61,9 @@ public class Woods extends ArrayList<Wood> {
     public void step() {
         for (Wood c : this) {
             if (c.movingleft) {
-                c.pos.x -= 0.025f;
+                c.pos.x -= speed;
             } else {
-                c.pos.x += 0.025f;
+                c.pos.x += speed;
             }
         }
     }
@@ -74,8 +74,9 @@ public class Woods extends ArrayList<Wood> {
             Wood c = ci.next();
             if (c.outOfTheRoad()) {
                 int row = c.row;
+                float woodWidth = c.woodWidth;
                 ci.remove();
-                ci.add(generateWood(row));
+                ci.add(generateWood(woodWidth, row));
             }
         }
     }
