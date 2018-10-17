@@ -55,6 +55,7 @@ public class Frog extends Sprite{
         p.setColor(Color.GREEN);
 
         c.drawCircle(xc,yc,FROGRADIUS,p);
+
     }
 
     //not used

@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.method.KeyListener;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -30,7 +32,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        //super.onDraw(canvas);
 
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
@@ -72,8 +74,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         invalidate();
         return true;
     }
-
-
 
 
     // check which region is the user pressing, and return a correct move instruction to the frog

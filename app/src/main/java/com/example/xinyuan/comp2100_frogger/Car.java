@@ -30,6 +30,7 @@ public class Car extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
+
     }
 
     public boolean outOfTheRoad() {
