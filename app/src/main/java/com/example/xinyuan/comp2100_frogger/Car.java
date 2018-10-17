@@ -32,16 +32,16 @@ public class Car extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
 
-        if (movingleft){
+        if (movingleft) {
             //draw body
-            c.drawRect(xc+ carHeadWidth, yc- carHeight/2, xc + carWidth, yc + carHeight/2, p);
+            c.drawRect(xc + carHeadWidth, yc - carHeight / 2, xc + carWidth, yc + carHeight / 2, p);
             //draw head
-            c.drawRect(xc, yc- carHeadHeight /2, xc+ carHeadWidth-carHeadGap, yc + carHeadHeight /2, p);
-        }else{
+            c.drawRect(xc, yc - carHeadHeight / 2, xc + carHeadWidth - carHeadGap, yc + carHeadHeight / 2, p);
+        } else { //car moving right
             //draw body
-            c.drawRect(xc, yc- carHeight/2, xc+ carWidth-carHeadWidth-carHeadGap, yc + carHeight/2, p);
+            c.drawRect(xc, yc - carHeight / 2, xc + carWidth - carHeadWidth - carHeadGap, yc + carHeight / 2, p);
             //draw head
-            c.drawRect(xc+ carWidth-carHeadWidth, yc- carHeadHeight /2, xc+ carWidth, yc + carHeadHeight /2, p);
+            c.drawRect(xc + carWidth - carHeadWidth, yc - carHeadHeight / 2, xc + carWidth, yc + carHeadHeight / 2, p);
 
         }
 
