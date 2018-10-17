@@ -57,7 +57,7 @@ public class Frog extends Sprite{
 
 //        System.out.println(c.getHeight());
 //        System.out.println(pos.y);
-        System.out.println(yc);
+        //System.out.println(yc);
 
     }
 
