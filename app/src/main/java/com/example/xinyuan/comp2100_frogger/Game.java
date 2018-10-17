@@ -55,7 +55,7 @@ public class Game {
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
-                if (frog.pos.attachedOnWoods(frog, w)) {
+                if (frog.pos.jumpedOnWoods(frog, w)) {
                     frogDied = false;
                     frog.attach(w);
                 }

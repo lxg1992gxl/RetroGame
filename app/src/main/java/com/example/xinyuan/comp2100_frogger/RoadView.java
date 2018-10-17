@@ -2,13 +2,9 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.method.KeyListener;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
