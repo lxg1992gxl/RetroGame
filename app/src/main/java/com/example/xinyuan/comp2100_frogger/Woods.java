@@ -5,7 +5,6 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.Random;
 
 public class Woods extends ArrayList<Wood> {
 
@@ -15,7 +14,7 @@ public class Woods extends ArrayList<Wood> {
     private static final float LOWERY = 0.38f;
     static float speed;
 
-    public static Woods manyWoods() {
+    public static Woods generateWoods() {
         Woods res = new Woods();
         int rows = 1;
         float[][] woodPosition = WoodPositions.getPosition();
@@ -35,10 +34,11 @@ public class Woods extends ArrayList<Wood> {
                 res.get(j).movingleft = false;
             }
         }
+        System.out.println(res);
         return res;
     }
 
-    public static Wood generateWood(float woodWidth, int row) {
+    public static Wood generateNewWoods(float woodWidth, int row) {
         if (row == 1) {
             Wood c = new Wood(1.0f, UPPERY,woodWidth, 1);
             c.movingleft = true;
@@ -66,7 +66,6 @@ public class Woods extends ArrayList<Wood> {
         }else if (Game.gameMode == "HARD"){
             speed = 0.035f;
         }
-        System.out.println(speed);
         for (Wood c : this) {
             if (c.movingleft) {
                 c.pos.x -= speed;
@@ -84,7 +83,7 @@ public class Woods extends ArrayList<Wood> {
                 int row = c.row;
                 float woodWidth = c.woodWidth;
                 ci.remove();
-                ci.add(generateWood(woodWidth, row));
+                ci.add(generateNewWoods(woodWidth, row));
             }
         }
     }
