@@ -51,11 +51,11 @@ public class Game {
         woods.updateWoods(woods);
 
         //return frog is dead when frog in river
-        //unless frog attached on a wood
+        //unless frog attachOn on a wood
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
-                if (frog.pos.rectCircleIntersects(frog, w)) {
+                if (frog.pos.attachedOnWoods(frog, w)) {
                     frogDied = false;
                     frog.attach(w);
                 }
@@ -63,7 +63,7 @@ public class Game {
         } else {
             frog.attach(null);
         }
-        frog.attached();
+        frog.attachOn();
 
         //check if frog is dead
         if (frogDied) {
