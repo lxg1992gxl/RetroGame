@@ -32,6 +32,7 @@ public class Game {
         lives = new Lives();
         frogDied = false;
         won = false;
+
         currentPlace = "ROAD";
     }
 
@@ -88,7 +89,8 @@ public class Game {
         //check if frog is dead
         if (frogDied) {
             if (!won) {
-                // reduce lives
+                lives.lives--;
+                won = true;
             }
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -97,6 +99,7 @@ public class Game {
                     frog.pos.replace();
                     frog.attach(null);
                     frogDied = false;
+                    won = false;
                 }
             }, 1000);
 
@@ -127,14 +130,6 @@ public class Game {
                 }
             }
         }
-        //check if frog is dead, if so, lives -1 and back to start position.
-        if (frogDied) {
-            lives.lives--;
-            frog.pos.replace();
-            frog.attach(null);
-            frogDied = false;
-        }
-
     }
 
     public void touch(String move) {

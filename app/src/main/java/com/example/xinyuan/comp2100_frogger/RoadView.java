@@ -1,21 +1,15 @@
 package com.example.xinyuan.comp2100_frogger;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-
 import java.util.Timer;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
@@ -94,14 +88,10 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     // step the view forward by one step - true is returned if more steps to go
     public boolean step() {
         game.step();
-//        if (game.hasWon() || game.carHit()) {
-//           /* Context context = this.getContext();
-//            while (!(context instanceof GameActivity))
-//                context = ((GameActivity) context).getBaseContext();
-//            ((GameActivity) context).endActivity(game.hasWon() ? "You Win !!" : "You Lost :(");*/
-////            notifyGameOver();
-//            return false;
-//        }
+        if(game.lives.lives==0){
+            notifyGameOver();
+            return false;
+        }
 
         /*
         checking special cases so that correct BGM can be play
@@ -193,39 +183,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             }
 
         }
-
-        invalidate();
-        return true;
-    }
-
-    // check which region is the user pressing, and return a correct move instruction to the frog
-    private String checkRegion(float x, float y) {
-        // pressing upper region
-        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
-            return "GOUP";
-        }
-        // pressing lower region
-        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
-            return "GODOWN";
-        }
-        // pressing left side of middle region
-        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
-            return "GOLEFT";
-        } else {
-            return "GORIGHT";
-        }
-
-    }
-
-    // Step the view forward by one step - if live is 0, game over, else move forward.
-    public boolean step() {
-        game.step();
-        if(game.lives.lives==0){
-            notifyGameOver();
-            return false;
-        }
-        this.invalidate();
-        return true;
     }
 
     //Notify the observers game over.
@@ -233,13 +190,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         for (GameOver o: observers) o.gameOver();
     }
 
-
-    @Override
-    public void run() {
-        if (step()) {
-            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
-        }
-    }
     //Register observers.
     public void registerGameOver(GameOver o){
         observers.add(o);
