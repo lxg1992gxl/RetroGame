@@ -21,7 +21,7 @@ public class Game {
         System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
-        woods = Woods.manyWoods();
+        woods = Woods.generateWoods();
         river = new River();
         score = new Score();
         frogDied = false;

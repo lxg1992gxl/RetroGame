@@ -18,7 +18,6 @@ public class Frog extends Sprite{
     float xc, yc;
     Wood attached = null;
 
-
     public Frog() {
         pos = new Pos(STARTX, STARTY);
     }
@@ -34,11 +33,11 @@ public class Frog extends Sprite{
         if (attached != null) {
             if (attached.movingleft) {
                 if (pos.x >= LEFTLIMIT){
-                    this.pos.x -= 0.025f;
+                    this.pos.x -= Woods.speed;
                 }
             } else {
                 if (pos.x <= RIGHTLIMIT){
-                    this.pos.x += 0.025f;
+                    this.pos.x += Woods.speed;
                 }
             }
         }
