@@ -9,14 +9,18 @@ public class Frog extends Sprite {
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
     public static final float FROGRADIUS = 20;
+    public int numberOfLives;
     float xc, yc;
-    int cH, cW;
+//    int cH, cW;
     Wood attached = null;
 
 
     public Frog() {
         pos = new Pos(STARTX, STARTY);
+        this.numberOfLives =3;
+
     }
+
 
     public void attach(Wood wood){
         attached = wood;
@@ -34,8 +38,8 @@ public class Frog extends Sprite {
         int h = c.getHeight();
         int w = c.getWidth();
 
-        cH = h;
-        cW = w;
+//        cH = h;
+//        cW = w;
 
         xc = pos.x * w;
         yc = pos.y * h;
@@ -45,9 +49,12 @@ public class Frog extends Sprite {
         c.drawCircle(xc, yc, FROGRADIUS, p);
     }
 
-    public boolean hitby(Car c) {
-        return (c.pos.rectCircleColliding(this, c));
-    }
+//    public boolean hitby(Car c) {
+//        return (c.pos.rectCircleColliding(this, c));
+//    }
+
+
+
 
     //check if frog reach the goal
     public boolean reachGoal() {

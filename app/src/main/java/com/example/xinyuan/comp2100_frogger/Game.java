@@ -33,12 +33,15 @@ public class Game {
 
     }
 
-    public boolean hasWon() {
-        return !frogDied;
-    }
+//    public boolean hasWon() {
+//        return !frogDied;
+//    }
 
-    public boolean carHit() {
-        return frogDied;
+    public boolean gameOver() {
+        if (frog.numberOfLives==0){
+            return frogDied;
+        }
+       return !frogDied;
     }
 
     public void step() {
@@ -57,6 +60,12 @@ public class Game {
 //        if (frog.hitby(car)) {
 //                frogDied = true;
 //        }
+        for (Car c :cars){
+            if (c.hitFrog(frog)==true){
+                frog.numberOfLives-=1;
+                System.out.println("Car hit!");
+            }
+        }
     }
 
 
