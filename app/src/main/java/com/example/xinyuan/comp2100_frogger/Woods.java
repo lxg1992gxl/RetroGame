@@ -10,8 +10,8 @@ public class Woods extends ArrayList<Wood> {
 
     private static final float DOWNGAP = 0.1f;
     private static final int MAXWOOD = 3;
-    private static final float UPPERY = 0.18f;
-    private static final float LOWERY = 0.38f;
+    private static final float UPPERY = 0.2f;
+    private static final float LOWERY = 0.4f;
     static float speed;
 
     private static final float EASYMODEWOODSPEED = 0.005f;
