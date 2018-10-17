@@ -32,17 +32,18 @@ public class WelcomeActivity extends AppCompatActivity {
         difficultLevel.show();
     }
 
-    public void easyClick(View view){
-        Intent intent = new Intent(this,GameActivity.class);
+    public void easyClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
-    public void mediumClick(View view){
-        Intent intent = new Intent(this,GameActivity.class);
+    public void mediumClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
-    public void hardClick(View view){
-        Intent intent = new Intent(this,GameActivity.class);
+
+    public void hardClick(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 

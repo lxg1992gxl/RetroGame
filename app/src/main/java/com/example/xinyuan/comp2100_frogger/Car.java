@@ -17,7 +17,6 @@ public class Car extends Sprite {
     Random random;
 
 
-
     public Car(float x, float y, int row) {
         this.pos = new Pos(x, y);
         this.row = row;

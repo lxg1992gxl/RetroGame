@@ -2,6 +2,7 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Random;
@@ -30,8 +31,7 @@ public class Cars extends ArrayList<Car> {
         for (int i = 0; i < res.size(); i++) {
             if (i < 3 || i >= 6) {
                 res.get(i).movingleft = true;
-            }
-            else {
+            } else {
                 res.get(i).movingleft = false;
             }
         }
@@ -63,8 +63,7 @@ public class Cars extends ArrayList<Car> {
         for (Car c : this) {
             if (c.movingleft) {
                 c.pos.x -= 0.025f;
-            }
-            else {
+            } else {
                 c.pos.x += 0.025f;
             }
         }

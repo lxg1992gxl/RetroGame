@@ -5,13 +5,14 @@ import android.graphics.Paint;
 
 public class Game {
 
-    private static final float FROGMOVE = 0.1f;
+    private static final float FROGMOVEX = 0.05f;
+    private static final float FROGMOVEY = 0.1f;
 
     private River river;
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    private boolean frogDied;
+    public static boolean frogDied;
     private Score score;
 
     public Game() {
@@ -26,22 +27,19 @@ public class Game {
     // draw all the game
     public void draw(Canvas canvas, Paint paint) {
         river.draw(canvas, paint);
-        frog.draw(canvas, paint);
         cars.draw(canvas, paint);
         woods.draw(canvas, paint);
+        frog.draw(canvas, paint);
         score.draw(canvas, paint);
 
     }
 
-//    public boolean hasWon() {
-//        return !frogDied;
-//    }
+    public boolean hasWon() {
+        return !frogDied;
+    }
 
-    public boolean gameOver() {
-        if (frog.numberOfLives==0){
-            return frogDied;
-        }
-       return !frogDied;
+    public boolean carHit() {
+        return frogDied;
     }
 
     public void step() {
@@ -50,20 +48,41 @@ public class Game {
         woods.step();
         woods.updateWoods(woods);
 
-        if (frog.reachGoal()) {
-            score.s++;
-            frog.pos.y = 0.9f;
+        //return frog is dead when frog in river
+        //unless frog attached on a wood
+        if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
+            frogDied = true;
+            for (Wood w : woods) {
+                if (frog.pos.rectCircleIntersects(frog, w)) {
+                    frogDied = false;
+                    frog.attach(w);
+                }
+            }
+        } else {
+            frog.attach(null);
+        }
+        frog.attached();
+
+        //check if frog is dead
+        if (frogDied) {
+            frog.pos.replace();
+            frog.attach(null);
+            frogDied = false;
         }
 
-//         check if frog is hit by a car
+        //if frog reach to the other side of the river
+        //increase score and replace the frog
+        if (frog.reachGoal()) {
+            score.score++;
+            frog.pos.replace();
+        }
 
-//        if (frog.hitby(car)) {
-//                frogDied = true;
-//        }
-        for (Car c :cars){
-            if (c.hitFrog(frog)==true){
-                frog.numberOfLives-=1;
-                System.out.println("Car hit!");
+        //check if frog is hit by a car
+        if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
+            for (Car c : cars) {
+                if (frog.pos.rectCircleIntersect(frog,c)) {
+                    frogDied = true;
+                }
             }
         }
     }
@@ -71,17 +90,19 @@ public class Game {
 
     public void touch(String move) {
         if (move == "GOUP") {
-            if (frog.pos.y > 0.11)
-                frog.pos.y -= FROGMOVE;
+            //limit the frog moving area
+            //prevent it moving out of screen
+            if (frog.pos.y > Frog.TOPLIMIT)
+                frog.pos.y -= FROGMOVEY;
         } else if (move == "GODOWN") {
-            if (frog.pos.y < 0.89)
-                frog.pos.y += FROGMOVE;
+            if (frog.pos.y < Frog.BOTTOMLIMIT)
+                frog.pos.y += FROGMOVEY;
         } else if (move == "GOLEFT") {
-            if (frog.pos.x > 0.11)
-                frog.pos.x -= FROGMOVE;
+            if (frog.pos.x > Frog.LEFTLIMIT)
+                frog.pos.x -= FROGMOVEX;
         } else if (move == "GORIGHT") {
-            if (frog.pos.x < 0.89)
-                frog.pos.x += FROGMOVE;
+            if (frog.pos.x < Frog.RIGHTLIMIT)
+                frog.pos.x += FROGMOVEX;
         }
     }
 

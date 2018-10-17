@@ -9,28 +9,42 @@ public class Frog extends Sprite {
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
     public static final float FROGRADIUS = 20;
-    public int numberOfLives;
+
+    public static final double LEFTLIMIT = 0.06;
+    public static final double RIGHTLIMIT = 0.94;
+    public static final double TOPLIMIT = 0.11;
+    public static final double BOTTOMLIMIT = 0.89;
+
     float xc, yc;
-//    int cH, cW;
+    int cH, cW;
     Wood attached = null;
 
 
     public Frog() {
         pos = new Pos(STARTX, STARTY);
-        this.numberOfLives =3;
-
     }
 
-
-    public void attach(Wood wood){
+    public void attach(Wood wood) {
         attached = wood;
     }
 
-    public void  attached(){
-        if (attached != null){
 
+    //check if frog is on a wood
+    //stop frog if it is riding wood out of screen
+    public void attached() {
+        if (attached != null) {
+            if (attached.movingleft) {
+                if (pos.x >= LEFTLIMIT){
+                    this.pos.x -= 0.025f;
+                }
+            } else {
+                if (pos.x <= RIGHTLIMIT){
+                    this.pos.x += 0.025f;
+                }
+            }
         }
     }
+
 
     @Override
     public void draw(Canvas c, Paint p) {
@@ -38,8 +52,8 @@ public class Frog extends Sprite {
         int h = c.getHeight();
         int w = c.getWidth();
 
-//        cH = h;
-//        cW = w;
+        cH = h;
+        cW = w;
 
         xc = pos.x * w;
         yc = pos.y * h;
@@ -49,14 +63,14 @@ public class Frog extends Sprite {
         c.drawCircle(xc, yc, FROGRADIUS, p);
     }
 
-//    public boolean hitby(Car c) {
-//        return (c.pos.rectCircleColliding(this, c));
-//    }
+    //not used
+    public boolean hitby(Car c) {
+        return (c.pos.rectCircleColliding(this, c));
+    }
 
 
-
-
-    //check if frog reach the goal
+    //check if frog reach the other side of the river
+    //if the frog reach the goal, return true
     public boolean reachGoal() {
         if (this.pos.y < 0.1) {
             return true;
