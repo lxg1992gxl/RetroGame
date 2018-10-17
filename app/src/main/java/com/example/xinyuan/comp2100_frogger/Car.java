@@ -17,7 +17,6 @@ public class Car extends Sprite {
     Random random;
 
 
-
     public Car(float x, float y, int row) {
         this.pos = new Pos(x, y);
         this.row = row;
@@ -34,7 +33,7 @@ public class Car extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
 
-//        random = new Random();
+        random = new Random();
 //        float carWidth = random.nextInt(120);
 
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);

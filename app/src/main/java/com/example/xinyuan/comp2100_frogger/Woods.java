@@ -15,31 +15,30 @@ public class Woods extends ArrayList<Wood> {
     private static final float UPPERY = 0.18f;
     private static final float LOWERY = 0.38f;
 
-    public static Woods manyWoods(){
+    public static Woods manyWoods() {
         Woods res = new Woods();
         int rows = 1;
-        for (float y = UPPERY; y <= LOWERY; y+= DOWNGAP) {
-            for (int c = 1; c <= MAXWOOD ; c++) {
+
+        for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
+            for (int c = 1; c <= MAXWOOD; c++) {
                 Random random = new Random();
                 float xRandom = random.nextFloat();
-                System.out.println(c);
                 float x = xRandom;
                 res.add(new Wood(x, y, rows));
             }
-            rows ++;
+            rows++;
         }
         for (int i = 0; i < res.size(); i++) {
-            if (i < 3 || i >6) {
+            if (i < 3 || i >= 6) {
                 res.get(i).movingleft = true;
-            }
-            else {
+            } else {
                 res.get(i).movingleft = false;
             }
         }
         return res;
     }
 
-    public static Wood generateWood(int row){
+    public static Wood generateWood(int row) {
         if (row == 1) {
             Wood c = new Wood(1.0f, UPPERY, 1);
             c.movingleft = true;
@@ -55,11 +54,11 @@ public class Woods extends ArrayList<Wood> {
         }
     }
 
-    public void draw(Canvas c, Paint p){
-        for (Wood a:this) a.draw(c, p);
+    public void draw(Canvas c, Paint p) {
+        for (Wood a : this) a.draw(c, p);
     }
 
-    public void step(){
+    public void step() {
         for (Wood c : this) {
             if (c.movingleft) {
                 c.pos.x -= 0.025f;
@@ -69,7 +68,7 @@ public class Woods extends ArrayList<Wood> {
         }
     }
 
-    public void updateWoods(Woods woods){
+    public void updateWoods(Woods woods) {
         ListIterator<Wood> ci = this.listIterator();
         while (ci.hasNext()) {
             Wood c = ci.next();
