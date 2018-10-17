@@ -19,7 +19,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Timer soundTimer;
     Handler repaintHandler;
     MediaPlayer mp;
-    boolean riverPlaying, roadPlaying, vicPlaying;
+    boolean riverPlaying, roadPlaying, vicPlaying, ggPlaying;
 
 
     public RoadView(Context context, AttributeSet attrs) {
@@ -38,7 +38,9 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 //        frogDrowned = MediaPlayer.create(context, R.raw.);
 //        road.start();
         mp = BGM.play(context,"ROAD");
+        mp.start();
         roadPlaying = true;
+        riverPlaying = vicPlaying = ggPlaying = false;
 
     }
 
@@ -83,6 +85,85 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             game.touch(checkRegion(userX, userY));
         }*/
 
+        playBGM();
+        invalidate();
+        return true;
+    }
+
+    // check which region is the user pressing, and return a correct move instruction to the frog
+    private String checkRegion(float x, float y) {
+        // pressing upper region
+        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
+            return "GOUP";
+        }
+        // pressing lower region
+        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
+            return "GODOWN";
+        }
+        // pressing left side of middle region
+        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
+            return "GOLEFT";
+        } else {
+            return "GORIGHT";
+        }
+
+    }
+
+    // step the view forward by one step - true is returned if more steps to go
+    public boolean step() {
+        game.step();
+//        if (game.hasWon() || game.carHit()) {
+//           /* Context context = this.getContext();
+//            while (!(context instanceof GameActivity))
+//                context = ((GameActivity) context).getBaseContext();
+//            ((GameActivity) context).endActivity(game.hasWon() ? "You Win !!" : "You Lost :(");*/
+////            notifyGameOver();
+//            return false;
+//        }
+        if (!Game.won && vicPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"ROAD");
+            mp.start();
+            vicPlaying = false;
+            roadPlaying = true;
+        }
+        else if (Game.frogDied && !ggPlaying && !riverPlaying && roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"GG");
+            mp.setVolume(1,1);
+            mp.start();
+            roadPlaying = false;
+            ggPlaying = true;
+        }
+        else if (!Game.frogDied && ggPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"ROAD");
+            mp.start();
+            roadPlaying = true;
+            ggPlaying = false;
+            riverPlaying = false;
+        }
+        else if (Game.frogDied && !ggPlaying && riverPlaying && !roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(),"GG");
+            mp.setVolume(1,1);
+            mp.start();
+            riverPlaying = false;
+            ggPlaying = true;
+        }
+        this.invalidate();
+        return true;
+    }
+
+    @Override
+    public void run() {
+        if (step()) {
+            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
+        }
+    }
+
+    public void playBGM() {
+        System.out.println(Game.currentPlace);
         if (Game.currentPlace == "ROAD") {
             if (vicPlaying) {
                 BGM.stopPlaying(mp);
@@ -124,53 +205,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 riverPlaying = false;
                 roadPlaying = false;
             }
-
-        }
-
-        System.out.println(Game.currentPlace);
-
-        invalidate();
-        return true;
-    }
-
-    // check which region is the user pressing, and return a correct move instruction to the frog
-    private String checkRegion(float x, float y) {
-        // pressing upper region
-        if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
-            return "GOUP";
-        }
-        // pressing lower region
-        else if (x <= canvasW && x >= 0 && y >= canvasH * 0.65f) {
-            return "GODOWN";
-        }
-        // pressing left side of middle region
-        else if (x <= 0.5 * canvasW && x >= 0 && y < canvasH * 0.65f && y > canvasH * 0.35f) {
-            return "GOLEFT";
-        } else {
-            return "GORIGHT";
-        }
-
-    }
-
-    // step the view forward by one step - true is returned if more steps to go
-    public boolean step() {
-        game.step();
-//        if (game.hasWon() || game.carHit()) {
-//           /* Context context = this.getContext();
-//            while (!(context instanceof GameActivity))
-//                context = ((GameActivity) context).getBaseContext();
-//            ((GameActivity) context).endActivity(game.hasWon() ? "You Win !!" : "You Lost :(");*/
-////            notifyGameOver();
-//            return false;
-//        }
-        this.invalidate();
-        return true;
-    }
-
-    @Override
-    public void run() {
-        if (step()) {
-            repaintHandler.postDelayed(this, RoadView.STEPDELAY);
         }
     }
 }

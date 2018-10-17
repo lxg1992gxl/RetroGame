@@ -72,25 +72,31 @@ public class Game {
         frog.attachOn();
 
         System.out.println(frog.pos.y);
-        if (frog.pos.y <= 0.1f) {
+        if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.5f) {
+        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
             currentPlace = "RIVER";
         }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.9f) {
+        else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
             currentPlace = "ROAD";
         }
 
-
-
-
-
         //check if frog is dead
         if (frogDied) {
-            frog.pos.replace();
-            frog.attach(null);
-            frogDied = false;
+            if (!won) {
+                // reduce lives
+            }
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    frog.pos.replace();
+                    frog.attach(null);
+                    frogDied = false;
+                }
+            }, 1000);
+
         }
 
         //if frog reach to the other side of the river
