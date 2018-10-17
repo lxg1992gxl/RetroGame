@@ -3,6 +3,9 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Game {
 
     private static final float FROGMOVEX = 0.05f;
@@ -14,7 +17,7 @@ public class Game {
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    public static boolean frogDied;
+    public static boolean frogDied, won;
     private Score score;
     public Lives lives;
 
@@ -28,6 +31,7 @@ public class Game {
         score = new Score();
         lives = new Lives();
         frogDied = false;
+        won = false;
         currentPlace = "ROAD";
     }
 
@@ -79,8 +83,18 @@ public class Game {
         //if frog reach to the other side of the river
         //increase score and replace the frog
         if (frog.reachGoal()) {
-            score.score++;
-            frog.pos.replace();
+            if (!won) {
+                score.score++;
+                won = true;
+            }
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    frog.pos.replace();
+                    won = false;
+                }
+            }, 4000);
         }
 
         //check if frog is hit by a car

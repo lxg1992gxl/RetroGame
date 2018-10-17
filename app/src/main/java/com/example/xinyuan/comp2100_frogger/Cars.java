@@ -10,8 +10,12 @@ public class Cars extends ArrayList<Car> {
 
     private static final float DOWNGAP = 0.1f;
     private static final int MAXCAR = 3;
-    private static final float UPPERY = 0.58f;
-    private static final float LOWERY = 0.88f;
+    private static final float UPPERY = 0.6f;
+    private static final float LOWERY = 0.9f;
+
+    private static final float EASYMODECARSPEED = 0.015f;
+    private static final float MIDMODECARSPEED = 0.025f;
+    private static final float HARDMODECARSPEED = 0.035f;
 
     public static Cars generateCar() {
         Cars cars = new Cars();
@@ -62,24 +66,24 @@ public class Cars extends ArrayList<Car> {
         for (Car c : this) {
             if (c.movingleft) {
                 if (Game.gameMode == "EASY") {
-                    c.pos.x -= 0.015f;
+                    c.pos.x -= EASYMODECARSPEED;
                 }
                 else if (Game.gameMode == "MEDIUM") {
-                    c.pos.x -= 0.025f;
+                    c.pos.x -= MIDMODECARSPEED;
                 }
                 else {
-                    c.pos.x -= 0.035f;
+                    c.pos.x -= HARDMODECARSPEED;
                 }
             }
             else {
                 if (Game.gameMode == "EASY") {
-                    c.pos.x += 0.015f;
+                    c.pos.x += EASYMODECARSPEED;
                 }
                 else if (Game.gameMode == "MEDIUM") {
-                    c.pos.x += 0.025f;
+                    c.pos.x += MIDMODECARSPEED;
                 }
                 else {
-                    c.pos.x += 0.035f;
+                    c.pos.x += HARDMODECARSPEED;
                 }
             }
         }
