@@ -54,8 +54,8 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        float userX = event.getX();
-        float userY = event.getY();
+        float userX ;
+        float userY ;
 
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -64,10 +64,10 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             game.touch(checkRegion(userX, userY));
         }
 
-        if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
+        /*if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
 
             game.touch(checkRegion(userX, userY));
-        }
+        }*/
 
         invalidate();
         return true;

@@ -10,6 +10,7 @@ public class Pos {
         this.y = y;
     }
 
+    //calculate distance
     public float distance(Pos p) {
         float dx = x - p.x;
         float dy = y - p.y;
