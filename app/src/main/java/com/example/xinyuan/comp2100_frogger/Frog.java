@@ -28,9 +28,9 @@ public class Frog extends Sprite{
     }
 
 
-    //check if frog is on a wood
+    //Attach the frog on a wood (so that frog can move along with it)
     //stop frog if it is riding wood out of screen
-    public void attached() {
+    public void attachOn() {
         if (attached != null) {
             if (attached.movingleft) {
                 if (pos.x >= LEFTLIMIT){

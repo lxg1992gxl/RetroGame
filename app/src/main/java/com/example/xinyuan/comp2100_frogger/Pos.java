@@ -16,7 +16,8 @@ public class Pos {
         return (float) Math.sqrt(dx * dx + dy * dy);
     }
 
-    public boolean rectCircleIntersects(Frog f, Wood w) {
+    //check if the frog is attachOn with a wood
+    public boolean attachedOnWoods(Frog f, Wood w) {
         float width = w.woodWidth;
         float height = w.woodHeight;
 
@@ -28,7 +29,7 @@ public class Pos {
         return !(fLeft >= w.xc + width || fRight <= w.xc || fTop >= w.yc + height || fBottom <= w.yc);
     }
 
-    //not used
+    //check if the frog is hit by a car
     public boolean hitByCar(Frog f, Car c) {
         float w = c.carWidth;
         float h = c.carHeight;

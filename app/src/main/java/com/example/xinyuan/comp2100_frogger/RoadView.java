@@ -2,9 +2,11 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -62,9 +64,17 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             game.touch(checkRegion(userX, userY));
         }
 
+        if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
+
+            game.touch(checkRegion(userX, userY));
+        }
+
         invalidate();
         return true;
     }
+
+
+
 
     // check which region is the user pressing, and return a correct move instruction to the frog
     private String checkRegion(float x, float y) {
@@ -106,4 +116,5 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             repaintHandler.postDelayed(this, RoadView.STEPDELAY);
         }
     }
+
 }
