@@ -19,6 +19,7 @@ public class Game {
     private Woods woods;
     public static boolean frogDied, won;
     private Score score;
+    public Lives lives;
 
 
     public Game() {
@@ -28,6 +29,7 @@ public class Game {
         woods = Woods.generateWoods();
         river = new River();
         score = new Score();
+        lives = new Lives();
         frogDied = false;
         won = false;
         currentPlace = "ROAD";
@@ -40,6 +42,7 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
+        lives.draw(canvas,paint);
     }
 
     public boolean hasWon() {
@@ -61,7 +64,7 @@ public class Game {
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
-                if (frog.pos.attachedOnWoods(frog, w)) {
+                if (frog.pos.jumpedOnWoods(frog, w)) {
                     frogDied = false;
                     frog.attach(w);
                 }
@@ -124,6 +127,14 @@ public class Game {
                 }
             }
         }
+        //check if frog is dead, if so, lives -1 and back to start position.
+        if (frogDied) {
+            lives.lives--;
+            frog.pos.replace();
+            frog.attach(null);
+            frogDied = false;
+        }
+
     }
 
     public void touch(String move) {
