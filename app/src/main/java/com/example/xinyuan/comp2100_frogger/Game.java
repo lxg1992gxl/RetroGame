@@ -5,16 +5,20 @@ import android.graphics.Paint;
 
 public class Game {
 
-    private static final float FROGMOVE = 0.1f;
+    private static final float FROGMOVEX = 0.05f;
+    private static final float FROGMOVEY = 0.1f;
+    public static String gameMode = "EASY";
 
     private River river;
     private Frog frog;
-    private Car car;
     private Cars cars;
     private Woods woods;
-    private boolean frogDied;
+    public static boolean frogDied;
+    private Score score;
+
 
     public Game() {
+        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.manyWoods();
@@ -25,13 +29,11 @@ public class Game {
 
     // draw all the game
     public void draw(Canvas canvas, Paint paint) {
-        river.draw(canvas,paint);
-        frog.draw(canvas, paint);
+        river.draw(canvas, paint);
         cars.draw(canvas, paint);
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
-
     }
 
     public boolean hasWon() {
@@ -80,13 +82,12 @@ public class Game {
         //check if frog is hit by a car
         if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
             for (Car c : cars) {
-                if (frog.pos.rectCircleIntersect(frog,c)) {
+                if (frog.pos.hitByCar(frog,c)) {
                     frogDied = true;
                 }
             }
         }
     }
-
 
 
     public void touch(String move) {
@@ -104,14 +105,6 @@ public class Game {
         } else if (move == "GORIGHT") {
             if (frog.pos.x < Frog.RIGHTLIMIT)
                 frog.pos.x += FROGMOVEX;
-        }
-        else if (move == "GOLEFT") {
-            if (frog.pos.x>0.11)
-                frog.pos.x -= FROGMOVE;
-        }
-        else if (move == "GORIGHT"){
-            if (frog.pos.y<0.89)
-                frog.pos.x += FROGMOVE;
         }
     }
 

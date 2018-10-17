@@ -16,7 +16,6 @@ public class Frog extends Sprite{
     public static final double BOTTOMLIMIT = 0.89;
 
     float xc, yc;
-    boolean initialization = true;
     Wood attached = null;
 
 
@@ -47,13 +46,11 @@ public class Frog extends Sprite{
 
     @Override
     public void draw(Canvas c, Paint p) {
-//        System.out.println("x is " + xc + "and yc is " + yc);
         int h = c.getHeight();
         int w = c.getWidth();
 
         xc = pos.x * w;
         yc = pos.y * h;
-//        System.out.println("x is " + xc + "and yc is " + yc);
 
         p.setColor(Color.GREEN);
 
@@ -62,9 +59,8 @@ public class Frog extends Sprite{
 
     //not used
     public boolean hitby(Car c) {
-        return (c.pos.rectCircleColliding(this,c));
+        return (c.pos.hitByCar(this,c));
     }
-
 
     //check if frog reach the other side of the river
     //if the frog reach the goal, return true
