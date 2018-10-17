@@ -45,7 +45,13 @@ public class Game {
         lives.draw(canvas,paint);
     }
 
+    public boolean hasWon() {
+        return !frogDied;
+    }
 
+    public boolean carHit() {
+        return frogDied;
+    }
 
     public void step() {
         cars.step();
@@ -58,9 +64,8 @@ public class Game {
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
-                    if (frog.pos.attachedOnWoods(frog, w)) {
+                if (frog.pos.jumpedOnWoods(frog, w)) {
                     frogDied = false;
-                    System.out.println("frog attach");
                     frog.attach(w);
                 }
             }
@@ -79,6 +84,7 @@ public class Game {
         else if (frog.pos.y > 0.1f && frog.pos.y <= 0.9f) {
             currentPlace = "ROAD";
         }
+
 
         //if frog reach to the other side of the river
         //increase score and replace the frog
@@ -133,6 +139,5 @@ public class Game {
                 frog.pos.x += FROGMOVEX;
         }
     }
-
 }
 

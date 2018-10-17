@@ -44,11 +44,11 @@ public class Woods extends ArrayList<Wood> {
 
     public static Wood generateNewWoods(float woodWidth, int row) {
         if (row == 1) {
-            Wood c = new Wood(1.0f, UPPERY,woodWidth, 1);
+            Wood c = new Wood(1.0f, UPPERY,woodWidth,1);
             c.movingleft = true;
             return c;
         } else if (row == 3) {
-            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP,woodWidth, 3);
+            Wood c = new Wood(1.0f, UPPERY + DOWNGAP + DOWNGAP,woodWidth,3);
             c.movingleft = true;
             return c;
         } else {

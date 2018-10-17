@@ -1,5 +1,8 @@
 package com.example.xinyuan.comp2100_frogger;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;

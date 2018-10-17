@@ -17,8 +17,8 @@ public class Pos {
         return (float) Math.sqrt(dx * dx + dy * dy);
     }
 
-    //check if the frog is attachOn with a wood
-    public boolean attachedOnWoods(Frog f, Wood w) {
+    //check if the frog is jumped on a wood
+    public boolean jumpedOnWoods(Frog f, Wood w) {
         float width = w.woodWidth;
         float height = w.woodHeight;
         float fLeft = f.xc - f.FROGRADIUS;
