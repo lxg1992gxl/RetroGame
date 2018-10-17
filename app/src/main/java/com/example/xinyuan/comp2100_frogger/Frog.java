@@ -18,7 +18,6 @@ public class Frog extends Sprite{
     float xc, yc;
     Wood attached = null;
 
-
     public Frog() {
         pos = new Pos(STARTX, STARTY);
     }
@@ -28,17 +27,17 @@ public class Frog extends Sprite{
     }
 
 
-    //check if frog is on a wood
+    //Attach the frog on a wood (so that frog can move along with it)
     //stop frog if it is riding wood out of screen
-    public void attached() {
+    public void attachOn() {
         if (attached != null) {
             if (attached.movingleft) {
                 if (pos.x >= LEFTLIMIT){
-                    this.pos.x -= 0.025f;
+                    this.pos.x -= Woods.speed;
                 }
             } else {
                 if (pos.x <= RIGHTLIMIT){
-                    this.pos.x += 0.025f;
+                    this.pos.x += Woods.speed;
                 }
             }
         }
@@ -55,6 +54,7 @@ public class Frog extends Sprite{
         p.setColor(Color.GREEN);
 
         c.drawCircle(xc,yc,FROGRADIUS,p);
+
     }
 
     //not used

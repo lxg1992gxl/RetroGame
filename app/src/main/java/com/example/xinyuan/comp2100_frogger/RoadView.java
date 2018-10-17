@@ -2,10 +2,14 @@ package com.example.xinyuan.comp2100_frogger;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.method.KeyListener;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -44,7 +48,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        //super.onDraw(canvas);
 
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
@@ -71,11 +75,17 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         float userX;
         float userY;
 
+
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             userX = event.getX();
             userY = event.getY();
             game.touch(checkRegion(userX, userY));
         }
+
+        /*if (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS) {
+
+            game.touch(checkRegion(userX, userY));
+        }*/
 
         if (Game.currentPlace == "ROAD") {
             if (!roadPlaying) {

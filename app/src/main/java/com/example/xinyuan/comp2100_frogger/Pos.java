@@ -10,13 +10,15 @@ public class Pos {
         this.y = y;
     }
 
+    //calculate distance
     public float distance(Pos p) {
         float dx = x - p.x;
         float dy = y - p.y;
         return (float) Math.sqrt(dx * dx + dy * dy);
     }
 
-    public boolean rectCircleIntersects(Frog f, Wood w) {
+    //check if the frog is attachOn with a wood
+    public boolean attachedOnWoods(Frog f, Wood w) {
         float width = w.woodWidth;
         float height = w.woodHeight;
 
@@ -28,22 +30,7 @@ public class Pos {
         return !(fLeft >= w.xc + width || fRight <= w.xc || fTop >= w.yc + height || fBottom <= w.yc);
     }
 
-    //copied from upper
-    //change arguments for car using
-    //TODO anyone combine these two method together?
-    public boolean rectCircleIntersect(Frog f, Car c) {
-        float width = c.carWidth;
-        float height = c.carHeight;
-
-        float fLeft = f.xc - f.FROGRADIUS;
-        float fRight = f.xc + f.FROGRADIUS;
-        float fTop = f.yc - f.FROGRADIUS;
-        float fBottom = f.yc + f.FROGRADIUS;
-
-        return !(fLeft >= c.xc + width || fRight <= c.xc || fTop >= c.yc + height || fBottom <= c.yc);
-    }
-
-    //not used
+    //check if the frog is hit by a car
     public boolean hitByCar(Frog f, Car c) {
         float w = c.carWidth;
         float h = c.carHeight;

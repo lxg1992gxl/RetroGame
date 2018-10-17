@@ -13,9 +13,10 @@ public class Wood extends Sprite {
     boolean movingleft;
     int row;
 
-    public Wood(float x, float y, int row) {
+    public Wood(float x, float y, float woodWidth, int row) {
         this.pos = new Pos(x, y);
         this.row = row;
+        this.woodWidth = woodWidth;
         movingleft = true;
     }
 
