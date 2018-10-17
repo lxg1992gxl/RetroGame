@@ -13,7 +13,7 @@ public class Woods extends ArrayList<Wood> {
     private static final int MAXWOOD = 3;
     private static final float UPPERY = 0.18f;
     private static final float LOWERY = 0.38f;
-    static float speed = 0.015f;
+    static float speed;
 
     public static Woods manyWoods() {
         Woods res = new Woods();
@@ -59,6 +59,14 @@ public class Woods extends ArrayList<Wood> {
     }
 
     public void step() {
+        if (Game.gameMode == "EASY"){
+            speed = 0.015f;
+        }else if (Game.gameMode == "MEDIUM" ){
+            speed = 0.025f;
+        }else if (Game.gameMode == "HARD"){
+            speed = 0.035f;
+        }
+        System.out.println(speed);
         for (Wood c : this) {
             if (c.movingleft) {
                 c.pos.x -= speed;
