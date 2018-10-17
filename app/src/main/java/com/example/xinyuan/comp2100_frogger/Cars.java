@@ -5,7 +5,6 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
-import java.util.Random;
 
 public class Cars extends ArrayList<Car> {
 
@@ -15,7 +14,7 @@ public class Cars extends ArrayList<Car> {
     private static final float LOWERY = 0.88f;
 
     public static Cars generateCar() {
-        Cars res = new Cars();
+        Cars cars = new Cars();
 
         float[][] carPos = CarPositions.getPosition();
 
@@ -23,19 +22,19 @@ public class Cars extends ArrayList<Car> {
         int i = 0;
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
             for (int numberOfCar = 0; numberOfCar < MAXCAR; numberOfCar++) {
-                res.add(new Car(carPos[i][0], y, carPos[i][1],row));
+                cars.add(new Car(carPos[i][0], y, carPos[i][1],row));
                 i++;
             }
             row++;
         }
-        for (int j = 0; j < res.size(); j++) {
+        for (int j = 0; j < cars.size(); j++) {
             if (j < 3 || j >= 6) {
-                res.get(j).movingleft = true;
+                cars.get(j).movingleft = true;
             } else {
-                res.get(j).movingleft = false;
+                cars.get(j).movingleft = false;
             }
         }
-        return res;
+        return cars;
     }
 
     public static Car generateNewCar(float carWidth, int row) {
@@ -62,9 +61,26 @@ public class Cars extends ArrayList<Car> {
         // move the cars side to side
         for (Car c : this) {
             if (c.movingleft) {
-                c.pos.x -= 0.015f;
-            } else {
-                c.pos.x += 0.015f;
+                if (Game.gameMode == "EASY") {
+                    c.pos.x -= 0.015f;
+                }
+                else if (Game.gameMode == "MEDIUM") {
+                    c.pos.x -= 0.025f;
+                }
+                else {
+                    c.pos.x -= 0.035f;
+                }
+            }
+            else {
+                if (Game.gameMode == "EASY") {
+                    c.pos.x += 0.015f;
+                }
+                else if (Game.gameMode == "MEDIUM") {
+                    c.pos.x += 0.025f;
+                }
+                else {
+                    c.pos.x += 0.035f;
+                }
             }
         }
     }
