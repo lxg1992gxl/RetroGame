@@ -30,6 +30,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void easyClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "EASY";
+        difficultLevel.dismiss();
         startActivity(intent);
         finish();
     }
@@ -37,6 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void mediumClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "MEDIUM";
+        difficultLevel.dismiss();
         startActivity(intent);
         finish();
     }
@@ -44,6 +46,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void hardClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "HARD";
+        difficultLevel.dismiss();
         startActivity(intent);
         finish();
     }

@@ -26,10 +26,12 @@ public class GameActivity extends AppCompatActivity implements GameOver{
         restart.setContentView(R.layout.restart_popup);
         restart.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         restart.show();
+        BGM.stopPlaying(RoadView.mp);
     }
     //Return to welcome activity to restart the game.
     public void restartClick(View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);
+        restart.dismiss();
         startActivity(intent);
         finish();
     }
