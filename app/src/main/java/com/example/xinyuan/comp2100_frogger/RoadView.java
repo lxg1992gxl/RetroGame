@@ -20,7 +20,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Timer soundTimer;
     Handler repaintHandler;
     ArrayList<GameOver> observers;
-    MediaPlayer mp;
+    public static MediaPlayer mp;
     boolean riverPlaying, roadPlaying, vicPlaying, ggPlaying;
 
 
@@ -127,6 +127,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             riverPlaying = false;
             ggPlaying = true;
         }
+        System.out.println("GG status" + ggPlaying);
         this.invalidate();
         return true;
     }
@@ -161,6 +162,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 mp.start();
                 roadPlaying = true;
             }
+            ggPlaying = false;
 
         }
         else if (Game.currentPlace == "RIVER") {
@@ -181,7 +183,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 riverPlaying = false;
                 roadPlaying = false;
             }
-
         }
     }
 

@@ -4,11 +4,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class WelcomeActivity extends AppCompatActivity {
     Dialog difficultLevel;
@@ -32,19 +30,25 @@ public class WelcomeActivity extends AppCompatActivity {
     public void easyClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "EASY";
+        difficultLevel.dismiss();
         startActivity(intent);
+        finish();
     }
 
     public void mediumClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "MEDIUM";
+        difficultLevel.dismiss();
         startActivity(intent);
+        finish();
     }
 
     public void hardClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "HARD";
+        difficultLevel.dismiss();
         startActivity(intent);
+        finish();
     }
 
 
