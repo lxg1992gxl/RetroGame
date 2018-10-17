@@ -1,8 +1,13 @@
 package com.example.xinyuan.comp2100_frogger;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 
 import java.util.Random;
 
@@ -17,6 +22,8 @@ public class Car extends Sprite {
     Random random;
 
 
+
+
     public Car(float x, float y, int row) {
         this.pos = new Pos(x, y);
         this.row = row;
@@ -27,17 +34,15 @@ public class Car extends Sprite {
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
-
         p.setColor(Color.BLACK);
 
         xc = pos.x * w;
         yc = pos.y * h;
-
         random = new Random();
-//        float carWidth = random.nextInt(120);
-
-//        c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
         c.drawRect(xc, yc, xc + carWidth, yc + carHeight, p);
+//        RectF car = new RectF (xc,yc,xc+carWidth,yc+carHeight);
+//        c.drawBitmap(RoadView.carImage,null,car,p);
+
     }
 
     public boolean outOfTheRoad() {
@@ -53,28 +58,4 @@ public class Car extends Sprite {
         return false;
     }
 
-    public boolean hitFrog(Frog frog){
-        float fx = frog.xc;
-        float fy = frog.yc;
-
-        System.out.println("Frog position");
-        System.out.println(fx);
-        System.out.println(fy);
-        float minDistX = this.xc;
-        float maxDistX = this.xc+carWidth;
-        float minDistY = this.yc+carHeight;
-        float maxDistY = this.yc;
-        System.out.println("Car pos");
-        System.out.println("min x "+minDistX);
-        System.out.println("max x "+maxDistX);
-        System.out.println("min y "+minDistY);
-        System.out.println("max y"+maxDistY);
-
-        // the frog with radius in this region is hit
-        if(fx<=maxDistX && fx>minDistX && fy<=minDistY && fy>maxDistY ){
-            return true;
-        }
-        return false;
-
-    }
 }

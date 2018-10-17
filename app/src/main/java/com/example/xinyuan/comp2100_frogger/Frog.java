@@ -3,6 +3,7 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Frog extends Sprite {
 
@@ -14,6 +15,7 @@ public class Frog extends Sprite {
     public static final double RIGHTLIMIT = 0.94;
     public static final double TOPLIMIT = 0.11;
     public static final double BOTTOMLIMIT = 0.89;
+
 
     float xc, yc;
     int cH, cW;
@@ -59,15 +61,10 @@ public class Frog extends Sprite {
         yc = pos.y * h;
 
         p.setColor(Color.GREEN);
-
         c.drawCircle(xc, yc, FROGRADIUS, p);
-    }
+//        RectF frog = new RectF (xc,yc,xc+FROGRADIUS,yc+FROGRADIUS);
 
-    //not used
-    public boolean hitby(Car c) {
-        return (c.pos.rectCircleColliding(this, c));
     }
-
 
     //check if frog reach the other side of the river
     //if the frog reach the goal, return true

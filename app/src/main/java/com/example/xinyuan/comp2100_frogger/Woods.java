@@ -11,7 +11,6 @@ public class Woods extends ArrayList<Wood> {
 
     private static final float DOWNGAP = 0.1f;
     private static final int MAXWOOD = 3;
-    private static final float MINGAP = 40.0f;
     private static final float UPPERY = 0.18f;
     private static final float LOWERY = 0.38f;
 

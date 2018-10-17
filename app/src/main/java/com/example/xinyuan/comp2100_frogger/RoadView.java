@@ -1,12 +1,20 @@
 package com.example.xinyuan.comp2100_frogger;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
     public static final int STEPDELAY = 100;
@@ -14,6 +22,10 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     Paint paint;
     Game game;
     Handler repaintHandler;
+    ArrayList<GameOver> observers;
+    public static Bitmap carImage;
+    public static Bitmap riverImage;
+    public static Bitmap woodImage;
 
     public RoadView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -21,31 +33,19 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         paint = new Paint();
         game = new Game();
         this.setOnTouchListener(this);
+        observers = new ArrayList<>();
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, STEPDELAY);
-
+        carImage = BitmapFactory.decodeResource(getResources(),R.drawable.car);
+        riverImage = BitmapFactory.decodeResource(getResources(), R.drawable.river);
+        woodImage = BitmapFactory.decodeResource(getResources(), R.drawable.wood);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvasH = canvas.getHeight();
         canvasW = canvas.getWidth();
-        /*
-        // line showing UP DOWN LEFT RIGHT region
-        // uncomment this to see the control regions
-
-        Paint paintGuidedLine = new Paint();
-        paintGuidedLine.setStrokeWidth(10);
-        paintGuidedLine.setColor(Color.RED);
-        // upper line
-        canvas.drawLine(0,canvasH * 0.35f,canvasW, canvasH * 0.35f, paintGuidedLine);
-        // lower line
-        canvas.drawLine(0,canvasH * 0.65f,canvasW, canvasH * 0.65f, paintGuidedLine);
-        // left right line
-        canvas.drawLine(0.5f * canvasW,canvasH * 0.35f,0.5f * canvasW,canvasH * 0.65f,paintGuidedLine);
-        */
         game.draw(canvas, paint);
 
     }
@@ -54,7 +54,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     public boolean onTouch(View v, MotionEvent event) {
         float userX = event.getX();
         float userY = event.getY();
-
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             userX = event.getX();
@@ -88,17 +87,19 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     // step the view forward by one step - true is returned if more steps to go
     public boolean step() {
         game.step();
-//        if (game.hasWon() || game.carHit()) {
-//           /* Context context = this.getContext();
-//            while (!(context instanceof GameActivity))
-//                context = ((GameActivity) context).getBaseContext();
-//            ((GameActivity) context).endActivity(game.hasWon() ? "You Win !!" : "You Lost :(");*/
-////            notifyGameOver();
-//            return false;
-//        }
+        if(game.lives.lives==0){
+            notifyGameOver();
+            return false;
+        }
         this.invalidate();
         return true;
     }
+
+
+    private void notifyGameOver(){
+        for (GameOver o: observers) o.gameOver();
+    }
+
 
     @Override
     public void run() {
@@ -106,4 +107,9 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             repaintHandler.postDelayed(this, RoadView.STEPDELAY);
         }
     }
+
+    public void registerGameOver(GameOver o){
+        observers.add(o);
+    }
+
 }

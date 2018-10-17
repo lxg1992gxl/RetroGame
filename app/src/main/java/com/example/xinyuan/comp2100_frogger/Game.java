@@ -14,6 +14,7 @@ public class Game {
     private Woods woods;
     public static boolean frogDied;
     private Score score;
+    public Lives lives;
 
     public Game() {
         frog = new Frog();
@@ -21,7 +22,9 @@ public class Game {
         woods = Woods.manyWoods();
         river = new River();
         score = new Score();
+        lives = new Lives();
         frogDied = false;
+
     }
 
     // draw all the game
@@ -31,16 +34,10 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
+        lives.draw(canvas,paint);
 
     }
 
-    public boolean hasWon() {
-        return !frogDied;
-    }
-
-    public boolean carHit() {
-        return frogDied;
-    }
 
     public void step() {
         cars.step();
@@ -52,6 +49,7 @@ public class Game {
         //unless frog attached on a wood
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
+            lives.lives--;
             for (Wood w : woods) {
                 if (frog.pos.rectCircleIntersects(frog, w)) {
                     frogDied = false;
@@ -82,10 +80,13 @@ public class Game {
             for (Car c : cars) {
                 if (frog.pos.rectCircleIntersect(frog,c)) {
                     frogDied = true;
+                    lives.lives--;
                 }
             }
         }
+
     }
+
 
 
     public void touch(String move) {

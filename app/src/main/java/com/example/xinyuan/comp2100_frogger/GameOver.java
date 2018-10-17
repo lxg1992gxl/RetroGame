@@ -1,4 +1,5 @@
 package com.example.xinyuan.comp2100_frogger;
 
-public class GameOver {
+public interface GameOver {
+    public void gameOver();
 }

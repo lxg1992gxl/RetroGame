@@ -31,9 +31,9 @@ public class Wood extends Sprite {
         p.setColor(Color.RED);
         p.setStrokeWidth(50.0f);
 
-//        c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
-        RectF wood = new RectF (xc,yc,xc+woodWidth,yc+woodHeight);
-        c.drawBitmap(RoadView.woodImage,null,wood,p);
+        c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
+//        RectF wood = new RectF (xc,yc,xc+woodWidth,yc+woodHeight);
+//        c.drawBitmap(RoadView.woodImage,null,wood,p);
     }
 
     public boolean outOfTheRoad() {
