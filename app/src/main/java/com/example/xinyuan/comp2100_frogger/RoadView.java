@@ -84,18 +84,29 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         }*/
 
         if (Game.currentPlace == "ROAD") {
-            if (!roadPlaying) {
+            if (vicPlaying) {
                 BGM.stopPlaying(mp);
-                mp = BGM.play(this.getContext(), "ROAD");
+                mp = BGM.play(this.getContext(),"ROAD");
                 mp.start();
+                vicPlaying = false;
+                roadPlaying = true;
             }
             if (riverPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(),"ROAD");
                 mp.start();
+                riverPlaying = false;
+                roadPlaying = true;
+            }
+            if (!roadPlaying) {
+                BGM.stopPlaying(mp);
+                mp = BGM.play(this.getContext(), "ROAD");
+                mp.start();
+                roadPlaying = true;
             }
 
-        } else if (Game.currentPlace == "RIVER") {
+        }
+        else if (Game.currentPlace == "RIVER") {
             if (roadPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "RIVER");
@@ -105,10 +116,13 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             }
         }
         else if (Game.currentPlace == "VIC") {
-            if (riverPlaying) {
+            if (riverPlaying || roadPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "VIC");
                 mp.start();
+                vicPlaying = true;
+                riverPlaying = false;
+                roadPlaying = false;
             }
 
         }

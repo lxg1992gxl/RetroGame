@@ -3,6 +3,7 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 
 public class Wood extends Sprite {
 
@@ -12,6 +13,7 @@ public class Wood extends Sprite {
     float yc;
     boolean movingleft;
     int row;
+    float round = 15.0f;
 
     public Wood(float x, float y, float woodWidth, int row) {
         this.pos = new Pos(x, y);
@@ -28,10 +30,13 @@ public class Wood extends Sprite {
         xc = pos.x * w;
         yc = pos.y * h;
 
-        p.setColor(Color.RED);
+        p.setColor(Color.rgb(222,184,135));
         p.setStrokeWidth(50.0f);
 
-        c.drawRect(xc, yc, xc + woodWidth, yc + woodHeight, p);
+        //draw wood in round rec
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            c.drawRoundRect(xc, yc, xc + woodWidth, yc + woodHeight,round,round,p);
+        }
     }
 
     public boolean outOfTheRoad() {
