@@ -56,7 +56,7 @@ public class FroggerTest {
     }
 
     @Test
-    public void testRrplace() {
+    public void testReplace() {
         Frog a = new Frog();
         a.pos.replace();
         assertTrue("The x position of frog a should be 0.5, but get",a.pos.x==0.5f);
