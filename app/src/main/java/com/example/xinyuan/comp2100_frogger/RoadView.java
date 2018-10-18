@@ -98,6 +98,20 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         /*
         checking special cases so that correct BGM can be play
         */
+        if (Game.currentPlace == "RIVER" && !riverPlaying && roadPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(), "RIVER");
+            mp.start();
+            roadPlaying = false;
+            riverPlaying = true;
+        } else if (Game.currentPlace == "VIC" && riverPlaying && !vicPlaying) {
+            BGM.stopPlaying(mp);
+            mp = BGM.play(this.getContext(), "VIC");
+            mp.start();
+            riverPlaying = false;
+            vicPlaying = true;
+        }
+
         if (!Game.won && vicPlaying && !roadPlaying) {
             BGM.stopPlaying(mp);
             mp = BGM.play(this.getContext(), "ROAD");
