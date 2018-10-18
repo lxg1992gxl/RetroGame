@@ -25,7 +25,7 @@ public class Pos {
         float fRight = f.xc + f.FROGRADIUS;
         float fTop = f.yc - f.FROGRADIUS;
         float fBottom = f.yc + f.FROGRADIUS;
-        return !(fLeft >= w.xc + width || fRight <= w.xc || fTop >= w.yc + height || fBottom <= w.yc);
+        return (fLeft >= w.xc && fRight <= w.xc+width && fTop >= w.yc - height/2 && fBottom <= w.yc +height/2);
     }
 
     //check if the frog is hit by a car
