@@ -22,6 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
         difficultLevel = new Dialog(this);
         help = new Dialog(this);
     }
+    // A dialog to choose what difficult levels
 
     public void showPopup(View view) {
         difficultLevel.findViewById(R.id.easy);
@@ -31,7 +32,7 @@ public class WelcomeActivity extends AppCompatActivity {
         difficultLevel.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         difficultLevel.show();
     }
-
+    // Button clicks on dialog
     public void easyClick(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         Game.gameMode = "EASY";
@@ -55,6 +56,8 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    // Create a help menu
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my_menu, menu);
