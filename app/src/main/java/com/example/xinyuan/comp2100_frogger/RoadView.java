@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
     public static final int STEPDELAY = 100;
-    float canvasH, canvasW;
+    static float canvasH;
+    static float canvasW;
     Paint paint;
     Game game;
     Handler repaintHandler;
@@ -65,7 +66,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     }
 
     // check which region is the user pressing, and return a correct move instruction to the frog
-    private String checkRegion(float x, float y) {
+    public static String checkRegion(float x, float y) {
         // pressing upper region
         if (x <= canvasW && x >= 0 && y <= canvasH * 0.35f) {
             return "GOUP";
