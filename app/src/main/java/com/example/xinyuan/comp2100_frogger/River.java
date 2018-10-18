@@ -13,7 +13,6 @@ public class River extends Sprite {
     private static final float ENDY = 0.45f;
 
 
-
     @Override
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
