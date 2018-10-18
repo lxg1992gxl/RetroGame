@@ -87,10 +87,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     // step the view forward by one step - true is returned if more steps to go
     public boolean step() {
         game.step();
-        if (game.lives.lives == 0) {
-            notifyGameOver();           // game is over when player has no more lives
-            return false;
-        }
+
 
         /*
         checking special cases so that correct BGM can be played
@@ -137,7 +134,12 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             riverPlaying = false;
             ggPlaying = true;
         }
+        
         this.invalidate();
+        if (game.lives.lives == 0) {
+            notifyGameOver();           // game is over when player has no more lives
+            return false;
+        }
         return true;
     }
 
