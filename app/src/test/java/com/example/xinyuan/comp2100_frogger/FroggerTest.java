@@ -13,4 +13,11 @@ public class FroggerTest {
     public void testGenerateWoods() {
         assertEquals(9, Woods.generateWoods().size());
     }
+
+    @Test
+    public void testGenerateCars() {
+        assertEquals(9, Cars.generateCar().size());
+    }
+    
+
 }
