@@ -73,6 +73,7 @@ public class Game {
         }
         frog.attachOn();
 
+        
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         }
