@@ -6,14 +6,13 @@ import android.graphics.Paint;
 
 public class Car extends Sprite {
 
-    float carWidth;
+    float carWidth,xc,yc;
     float carHeight = 60.0f;
     float carHeadWidth = 30.0f;
     float carHeadHeight = 40.0f;
     float carHeadGap = 5.0f;
 
     boolean movingleft;
-    float xc, yc;
     int row;
 
     public Car(float x, float y, float carWidth, int row) {

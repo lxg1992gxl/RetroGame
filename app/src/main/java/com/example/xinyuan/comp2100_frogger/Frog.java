@@ -16,7 +16,6 @@ public class Frog extends Sprite {
     public static final double BOTTOMLIMIT = 0.89;
 
     float xc, yc;
-    int cH, cW;
     Wood attached = null;
 
     public Frog() {
@@ -49,8 +48,6 @@ public class Frog extends Sprite {
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
-        cH = h;
-        cW = w;
         xc = pos.x * w;
         yc = pos.y * h;
         p.setColor(Color.GREEN);

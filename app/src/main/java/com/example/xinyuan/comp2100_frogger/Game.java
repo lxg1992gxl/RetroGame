@@ -101,6 +101,7 @@ public class Game {
             if (!won) {
                 score.score++;
                 won = true;
+                ableToMove = false;
             }
             if (!delayed) {
                 delayed = true;
@@ -111,6 +112,7 @@ public class Game {
                         frog.pos.replace();
                         won = false;
                         delayed = false;
+                        ableToMove = true;
                     }
                 }, 4000);
             }
