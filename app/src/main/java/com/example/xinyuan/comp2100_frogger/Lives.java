@@ -12,7 +12,7 @@ public class Lives {
         int h = c.getHeight();
         int w = c.getWidth();
 
-        float xc = 0.7f * w;
+        float xc = 0.77f * w;
         float yc = 0.035f * h;
 
         p.setColor(Color.RED);
