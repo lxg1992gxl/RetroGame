@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Frog extends Sprite{
+public class Frog extends Sprite {
 
     public static final float STARTX = 0.5f;
     public static final float STARTY = 0.9f;
@@ -24,7 +24,7 @@ public class Frog extends Sprite{
         pos = new Pos(STARTX, STARTY);
     }
 
-    public void attach(Wood wood){
+    public void attach(Wood wood) {
         attached = wood;
     }
 
@@ -34,11 +34,11 @@ public class Frog extends Sprite{
     public void attachOn() {
         if (attached != null) {
             if (attached.movingleft) {
-                if (pos.x >= LEFTLIMIT){
+                if (pos.x >= LEFTLIMIT) {
                     this.pos.x -= Woods.speed;
                 }
             } else {
-                if (pos.x <= RIGHTLIMIT){
+                if (pos.x <= RIGHTLIMIT) {
                     this.pos.x += Woods.speed;
                 }
             }
@@ -55,7 +55,7 @@ public class Frog extends Sprite{
         xc = pos.x * w;
         yc = pos.y * h;
         p.setColor(Color.GREEN);
-        c.drawCircle(xc,yc,FROGRADIUS,p);
+        c.drawCircle(xc, yc, FROGRADIUS, p);
 
 //        System.out.println(c.getHeight());
 //        System.out.println(pos.y);

@@ -17,8 +17,8 @@ public class Game {
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    public static boolean frogDied, won;
-    private Score score;
+    public static boolean frogDied, won, ableToMove;
+    public static Score score;
     public Lives lives;
 
 
@@ -30,9 +30,8 @@ public class Game {
         river = new River();
         score = new Score();
         lives = new Lives();
-        frogDied = false;
-        won = false;
-
+        frogDied =  won = false;
+        ableToMove = true;
         currentPlace = "ROAD";
     }
 
@@ -43,7 +42,7 @@ public class Game {
         woods.draw(canvas, paint);
         frog.draw(canvas, paint);
         score.draw(canvas, paint);
-        lives.draw(canvas,paint);
+        lives.draw(canvas, paint);
     }
 
     public boolean hasWon() {
@@ -75,14 +74,12 @@ public class Game {
         }
         frog.attachOn();
 
-        System.out.println(frog.pos.y);
+
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
-        }
-        else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
+        } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
             currentPlace = "RIVER";
-        }
-        else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
+        } else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
             currentPlace = "ROAD";
         }
 
@@ -91,6 +88,7 @@ public class Game {
             if (!won) {
                 lives.lives--;
                 won = true;
+                ableToMove = false;
             }
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -98,8 +96,8 @@ public class Game {
                 public void run() {
                     frog.pos.replace();
                     frog.attach(null);
-                    frogDied = false;
-                    won = false;
+                    frogDied = won = false;
+                    ableToMove = true;
                 }
             }, 1000);
 
@@ -125,7 +123,7 @@ public class Game {
         //check if frog is hit by a car
         if (frog.pos.y > 0.45f && frog.pos.y < 0.9f) {
             for (Car c : cars) {
-                if (frog.pos.hitByCar(frog,c)) {
+                if (frog.pos.hitByCar(frog, c)) {
                     frogDied = true;
                 }
             }
@@ -133,20 +131,22 @@ public class Game {
     }
 
     public void touch(String move) {
-        if (move == "GOUP") {
-            //limit the frog moving area
-            //prevent it moving out of screen
-            if (frog.pos.y > Frog.TOPLIMIT)
-                frog.pos.y -= FROGMOVEY;
-        } else if (move == "GODOWN") {
-            if (frog.pos.y < Frog.BOTTOMLIMIT)
-                frog.pos.y += FROGMOVEY;
-        } else if (move == "GOLEFT") {
-            if (frog.pos.x > Frog.LEFTLIMIT)
-                frog.pos.x -= FROGMOVEX;
-        } else if (move == "GORIGHT") {
-            if (frog.pos.x < Frog.RIGHTLIMIT)
-                frog.pos.x += FROGMOVEX;
+        if (ableToMove) {
+            if (move == "GOUP") {
+                //limit the frog moving area
+                //prevent it moving out of screen
+                if (frog.pos.y > Frog.TOPLIMIT)
+                    frog.pos.y -= FROGMOVEY;
+            } else if (move == "GODOWN") {
+                if (frog.pos.y < Frog.BOTTOMLIMIT)
+                    frog.pos.y += FROGMOVEY;
+            } else if (move == "GOLEFT") {
+                if (frog.pos.x > Frog.LEFTLIMIT)
+                    frog.pos.x -= FROGMOVEX;
+            } else if (move == "GORIGHT") {
+                if (frog.pos.x < Frog.RIGHTLIMIT)
+                    frog.pos.x += FROGMOVEX;
+            }
         }
     }
 }

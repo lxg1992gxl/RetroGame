@@ -13,16 +13,15 @@ public class River extends Sprite {
     private static final float ENDY = 0.45f;
 
 
-
     @Override
     public void draw(Canvas c, Paint p) {
         int h = c.getHeight();
         int w = c.getWidth();
 
         p.setColor(Color.BLUE);
-        c.drawRect(STARTX, STARTY * h, w, ENDY * h, p);
-//        RectF river = new RectF (STARTX,STARTY*h,w,ENDY*h);
-//        c.drawBitmap(RoadView.riverImage,null,river,p);
+//        c.drawRect(STARTX, STARTY * h, w, ENDY * h, p);
+        RectF river = new RectF (STARTX,STARTY*h,w,ENDY*h);
+        c.drawBitmap(RoadView.riverImage,null,river,p);
 
     }
 }

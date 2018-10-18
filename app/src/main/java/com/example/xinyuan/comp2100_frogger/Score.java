@@ -24,4 +24,9 @@ public class Score {
 
         c.drawText(String.valueOf(score), xc, yc, p);
     }
+
+    public int getScore() {
+        return score;
+    }
+
 }
