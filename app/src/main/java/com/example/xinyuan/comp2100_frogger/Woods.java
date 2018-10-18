@@ -38,7 +38,6 @@ public class Woods extends ArrayList<Wood> {
                 res.get(j).movingleft = false;
             }
         }
-        System.out.println(res);
         return res;
     }
 
