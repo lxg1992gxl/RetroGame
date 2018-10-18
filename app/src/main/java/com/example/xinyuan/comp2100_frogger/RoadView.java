@@ -12,14 +12,12 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Timer;
 
 public class RoadView extends View implements View.OnTouchListener, Runnable {
     public static final int STEPDELAY = 100;
     float canvasH, canvasW;
     Paint paint;
     Game game;
-    Timer soundTimer;
     Handler repaintHandler;
     ArrayList<GameOver> observers;
     public static MediaPlayer mp;
@@ -33,16 +31,14 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         paint = new Paint();
         game = new Game();
         this.setOnTouchListener(this);
-        soundTimer = new Timer();
         observers = new ArrayList<>();
         repaintHandler = new Handler();
         repaintHandler.postDelayed(this, STEPDELAY);
         mp = BGM.play(context, "ROAD");
-        mp.start();
-        roadPlaying = true;
-        riverPlaying = vicPlaying = ggPlaying = false;
+        mp.start();                                     // play ROAD bgm when game starts
+        roadPlaying = true;                             // playing ROAD currently
+        riverPlaying = vicPlaying = ggPlaying = false;  // other bgm all not playing
         riverImage = BitmapFactory.decodeResource(getResources(), R.drawable.river);
-
     }
 
     @Override
@@ -91,12 +87,12 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     public boolean step() {
         game.step();
         if (game.lives.lives == 0) {
-            notifyGameOver();
+            notifyGameOver();           // game is over when player has no more lives
             return false;
         }
 
         /*
-        checking special cases so that correct BGM can be play
+        checking special cases so that correct BGM can be played
         */
         if (Game.currentPlace == "RIVER" && !riverPlaying && roadPlaying) {
             BGM.stopPlaying(mp);
@@ -140,14 +136,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             riverPlaying = false;
             ggPlaying = true;
         }
-        System.out.println("Current " + Game.currentPlace);
-        System.out.println("GG status " + ggPlaying);
-        System.out.println("vic " + vicPlaying);
-        System.out.println("river " + riverPlaying);
-        System.out.println("road " + roadPlaying);
-        System.out.println("Frog is died " + Game.frogDied);
-        System.out.println("Game is won " + Game.won);
-        System.out.println();
         this.invalidate();
         return true;
     }
@@ -184,7 +172,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 roadPlaying = true;
             }
 
-
         } else if (Game.currentPlace == "RIVER") {
             if (roadPlaying) {
                 BGM.stopPlaying(mp);
@@ -195,7 +182,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 vicPlaying = false;
             }
         } else if (Game.currentPlace == "VIC") {
-            System.out.println("Hit gonna play VIC");
             if (riverPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "VIC");
@@ -216,5 +202,4 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     public void registerGameOver(GameOver o) {
         observers.add(o);
     }
-
 }

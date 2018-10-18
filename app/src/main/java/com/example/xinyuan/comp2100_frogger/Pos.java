@@ -10,13 +10,6 @@ public class Pos {
         this.y = y;
     }
 
-    //calculate distance
-    public float distance(Pos p) {
-        float dx = x - p.x;
-        float dy = y - p.y;
-        return (float) Math.sqrt(dx * dx + dy * dy);
-    }
-
     //check if the frog is jumped on a wood
     public boolean jumpedOnWoods(Frog f, Wood w) {
         float width = w.woodWidth;
@@ -59,5 +52,4 @@ public class Pos {
         this.y = 0.9f;
         Game.frogDied = false;
     }
-
 }

@@ -42,6 +42,7 @@ public class Woods extends ArrayList<Wood> {
         return res;
     }
 
+    // generate new wood when one wood is out of the river/screen
     public static Wood generateNewWoods(float woodWidth, int row) {
         if (row == 1) {
             Wood c = new Wood(1.0f, UPPERY, woodWidth, 1);
@@ -79,11 +80,12 @@ public class Woods extends ArrayList<Wood> {
         }
     }
 
+    // update woods in the game
     public void updateWoods(Woods woods) {
         ListIterator<Wood> ci = this.listIterator();
         while (ci.hasNext()) {
             Wood c = ci.next();
-            if (c.outOfTheRoad()) {
+            if (c.outOfTheRiver()) {
                 int row = c.row;
                 float woodWidth = c.woodWidth;
                 ci.remove();

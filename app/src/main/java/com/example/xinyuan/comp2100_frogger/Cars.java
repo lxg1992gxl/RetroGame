@@ -20,6 +20,7 @@ public class Cars extends ArrayList<Car> {
     public static Cars generateCar() {
         Cars cars = new Cars();
 
+        // randomly get the positions for cars
         float[][] carPos = Positions.getPosition("CAR");
 
         int row = 1;
@@ -41,6 +42,7 @@ public class Cars extends ArrayList<Car> {
         return cars;
     }
 
+    // generate new car when a car has driven out of the road/screen
     public static Car generateNewCar(float carWidth, int row) {
         if (row == 1) {
             Car c = new Car(1.0f, UPPERY, carWidth, 1);
@@ -62,7 +64,7 @@ public class Cars extends ArrayList<Car> {
     }
 
     public void step() {
-        // move the cars side to side
+        // move the cars
         for (Car c : this) {
             if (c.movingleft) {
                 if (Game.gameMode == "EASY") {
@@ -84,6 +86,7 @@ public class Cars extends ArrayList<Car> {
         }
     }
 
+    // update the cars in the game
     public void updateCars(Cars cars) {
         ListIterator<Car> ci = this.listIterator();
         while (ci.hasNext()) {
@@ -96,7 +99,5 @@ public class Cars extends ArrayList<Car> {
             }
         }
     }
-
-
 }
 

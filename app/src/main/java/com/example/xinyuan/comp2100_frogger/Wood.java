@@ -7,10 +7,8 @@ import android.os.Build;
 
 public class Wood extends Sprite {
 
-    float woodWidth = 100.0f;
+    float woodWidth, xc, yc;
     float woodHeight = 60.0f;
-    float xc;
-    float yc;
     boolean movingleft;
     int row;
     float round = 15.0f;
@@ -39,7 +37,8 @@ public class Wood extends Sprite {
         }
     }
 
-    public boolean outOfTheRoad() {
+    // check if the wood has floated out of the river/screen
+    public boolean outOfTheRiver() {
         if (movingleft) {
             if (pos.x <= -0.09f) {
                 return true;

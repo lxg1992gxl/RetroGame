@@ -19,7 +19,6 @@ public class Frog extends Sprite {
     int cH, cW;
     Wood attached = null;
 
-
     public Frog() {
         pos = new Pos(STARTX, STARTY);
     }
@@ -56,11 +55,6 @@ public class Frog extends Sprite {
         yc = pos.y * h;
         p.setColor(Color.GREEN);
         c.drawCircle(xc, yc, FROGRADIUS, p);
-
-//        System.out.println(c.getHeight());
-//        System.out.println(pos.y);
-        //System.out.println(yc);
-
     }
 
 

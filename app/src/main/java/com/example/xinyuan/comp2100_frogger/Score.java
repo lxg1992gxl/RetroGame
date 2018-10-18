@@ -25,6 +25,7 @@ public class Score {
         c.drawText(String.valueOf(score), xc, yc, p);
     }
 
+    // return player's score
     public int getScore() {
         return score;
     }
