@@ -20,20 +20,18 @@ import org.junit.runner.RunWith;
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+// */
 //@RunWith(AndroidJUnit4.class)
-//public class restartScreenTest {
+//public class startScreenTest {
 //    @Rule
-//    public ActivityTestRule<GameActivity> gameActivityActivityTestRule =
-//            new ActivityTestRule<>(GameActivity.class);
+//    public ActivityTestRule<WelcomeActivity> welcomeActivityActivityTestRule =
+//            new ActivityTestRule<>(WelcomeActivity.class);
 //    @Test
-//    public void restartButtonClick() throws Exception{
-//        onView(withId(R.id.restart)
+//    public void startClick(){
+//        onView(withId(R.id.start))
 //                .perform(click());
-//        onView(withId(R.id.play))
-//                .check();
-//
-//
+//        onView(withId(R.id.easy))
+//                .check(matches(isClickable()));
 //    }
 //
 //}

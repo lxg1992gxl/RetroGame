@@ -17,12 +17,12 @@ public class Score {
         int w = c.getWidth();
 
         float xc = 0.01f * w;
-        float yc = 0.03f * h;
+        float yc = 0.035f * h;
 
         p.setColor(Color.BLACK);
         p.setTextSize(70);
 
-        c.drawText(String.valueOf(score), xc, yc, p);
+        c.drawText("Score: "+String.valueOf(score), xc, yc, p);
     }
 
     // return player's score
