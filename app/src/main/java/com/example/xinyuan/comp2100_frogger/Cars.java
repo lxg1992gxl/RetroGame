@@ -20,7 +20,7 @@ public class Cars extends ArrayList<Car> {
     public static Cars generateCar() {
         Cars cars = new Cars();
 
-        float[][] carPos = CarPositions.getPosition();
+        float[][] carPos = Positions.getPosition("CAR");
 
         int row = 1;
         int i = 0;

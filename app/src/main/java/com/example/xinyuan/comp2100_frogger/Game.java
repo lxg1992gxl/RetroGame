@@ -17,22 +17,20 @@ public class Game {
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    public static boolean frogDied, won;
+    public static boolean frogDied, won, ableToMove;
     private Score score;
     public Lives lives;
 
 
     public Game() {
-        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.generateWoods();
         river = new River();
         score = new Score();
         lives = new Lives();
-        frogDied = false;
-        won = false;
-
+        frogDied =  won = false;
+        ableToMove = true;
         currentPlace = "ROAD";
     }
 
@@ -75,7 +73,6 @@ public class Game {
         }
         frog.attachOn();
 
-        System.out.println(frog.pos.y);
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         }
@@ -91,6 +88,7 @@ public class Game {
             if (!won) {
                 lives.lives--;
                 won = true;
+                ableToMove = false;
             }
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -98,8 +96,8 @@ public class Game {
                 public void run() {
                     frog.pos.replace();
                     frog.attach(null);
-                    frogDied = false;
-                    won = false;
+                    frogDied = won = false;
+                    ableToMove = true;
                 }
             }, 1000);
 
@@ -133,20 +131,22 @@ public class Game {
     }
 
     public void touch(String move) {
-        if (move == "GOUP") {
-            //limit the frog moving area
-            //prevent it moving out of screen
-            if (frog.pos.y > Frog.TOPLIMIT)
-                frog.pos.y -= FROGMOVEY;
-        } else if (move == "GODOWN") {
-            if (frog.pos.y < Frog.BOTTOMLIMIT)
-                frog.pos.y += FROGMOVEY;
-        } else if (move == "GOLEFT") {
-            if (frog.pos.x > Frog.LEFTLIMIT)
-                frog.pos.x -= FROGMOVEX;
-        } else if (move == "GORIGHT") {
-            if (frog.pos.x < Frog.RIGHTLIMIT)
-                frog.pos.x += FROGMOVEX;
+        if (ableToMove) {
+            if (move == "GOUP") {
+                //limit the frog moving area
+                //prevent it moving out of screen
+                if (frog.pos.y > Frog.TOPLIMIT)
+                    frog.pos.y -= FROGMOVEY;
+            } else if (move == "GODOWN") {
+                if (frog.pos.y < Frog.BOTTOMLIMIT)
+                    frog.pos.y += FROGMOVEY;
+            } else if (move == "GOLEFT") {
+                if (frog.pos.x > Frog.LEFTLIMIT)
+                    frog.pos.x -= FROGMOVEX;
+            } else if (move == "GORIGHT") {
+                if (frog.pos.x < Frog.RIGHTLIMIT)
+                    frog.pos.x += FROGMOVEX;
+            }
         }
     }
 }

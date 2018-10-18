@@ -21,7 +21,7 @@ public class Woods extends ArrayList<Wood> {
     public static Woods generateWoods() {
         Woods res = new Woods();
         int rows = 1;
-        float[][] woodPosition = WoodPositions.getPosition();
+        float[][] woodPosition = Positions.getPosition("WOOD");
         int i = 0;
 
         for (float y = UPPERY; y <= LOWERY; y += DOWNGAP) {
