@@ -30,7 +30,7 @@ public class Positions {
                                         {0.1f, 200}, {0.45f, 130}, {0.85f, 180}}};
 
 
-
+    // randomly select starting positions of cars and woods
     public static float[][] getPosition(String object) {
         if (object != "CAR" && object != "WOOD") throw new Error("no positions available for " + object);
         Random random = new Random();

@@ -6,14 +6,13 @@ import android.graphics.Paint;
 
 public class Car extends Sprite {
 
-    float carWidth;
+    float carWidth,xc,yc;
     float carHeight = 60.0f;
     float carHeadWidth = 30.0f;
     float carHeadHeight = 40.0f;
     float carHeadGap = 5.0f;
 
     boolean movingleft;
-    float xc, yc;
     int row;
 
     public Car(float x, float y, float carWidth, int row) {
@@ -43,16 +42,9 @@ public class Car extends Sprite {
             c.drawRect(xc + carWidth - carHeadWidth, yc - carHeadHeight / 2, xc + carWidth, yc + carHeadHeight / 2, p);
 
         }
-
-//        System.out.println("car");
-//        System.out.println(c.getHeight());
-//        System.out.println(pos.y);
-
-//        System.out.println(yc);
-        //System.out.println(Cars.UPPERY+Cars.DOWNGAP);
-
     }
 
+    // check if the car has driven out of the road / screen
     public boolean outOfTheRoad() {
         if (movingleft) {
             if (pos.x <= -0.09f) {
