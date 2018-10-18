@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 public class CarTest {
 
+    // written by Xinyuan Ye
     @Test
     public void outOfTheRoad() {
         Car carInRoad = new Car(0.1f, 0.6f,180,1);

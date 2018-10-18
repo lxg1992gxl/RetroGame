@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
+//This class is written by Dong Xi
 
 public class Wood extends Sprite {
 

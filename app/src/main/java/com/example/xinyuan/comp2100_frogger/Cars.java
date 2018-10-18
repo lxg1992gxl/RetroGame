@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+//This class is written by Xinyuan Ye
 
 public class Cars extends ArrayList<Car> {
 

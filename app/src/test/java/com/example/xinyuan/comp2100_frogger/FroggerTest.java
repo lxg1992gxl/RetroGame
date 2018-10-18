@@ -8,11 +8,13 @@ import static org.junit.Assert.assertTrue;
 
 public class FroggerTest {
 
+    // written by XiaoGuang Lyu
     @Test
     public void testGenerateWoods() {
         assertEquals(9, Woods.generateWoods().size());
     }
 
+    // written by Zirui Tan
     @Test
     public void testCheckRegion(){
         RoadView.canvasH = 1000;
@@ -31,11 +33,13 @@ public class FroggerTest {
         assertEquals("GORIGHT", RoadView.checkRegion(x, y));
     }
 
+    // written by Dong Xi
     @Test
     public void testGenerateCars() {
         assertEquals(9, Cars.generateCar().size());
     }
 
+    // written by XiaoGuang Lyu
     @Test
     public void testReplace() {
         Frog a = new Frog();

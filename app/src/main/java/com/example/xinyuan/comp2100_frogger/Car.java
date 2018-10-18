@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+//This class is written by Xinyuan Ye
 public class Car extends Sprite {
 
     float carWidth,xc,yc;

@@ -1,7 +1,7 @@
 package com.example.xinyuan.comp2100_frogger;
 
 import java.util.Random;
-
+//This class is written by Xinyuan Ye
 public class Positions {
 
     static final float[][][] carPos = {   {{0.1f,100},{0.4f,150},{0.8f,170},

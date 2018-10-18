@@ -8,7 +8,7 @@ import android.graphics.Paint;
  * A integer can record how many times the frog successfully make through
  * default shown on top left conner
  */
-
+//This class is written by XiaoGuang Lyu
 public class Score {
     int score = 0;
 

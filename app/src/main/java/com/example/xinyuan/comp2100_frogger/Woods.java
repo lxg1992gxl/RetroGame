@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
-
+//This class is written by Dong Xi
 public class Woods extends ArrayList<Wood> {
 
     private static final float DOWNGAP = 0.1f;

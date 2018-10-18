@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+//This class is written by Xiaoguang Lyu
 public class Game {
 
     private static final float FROGMOVEX = 0.05f;

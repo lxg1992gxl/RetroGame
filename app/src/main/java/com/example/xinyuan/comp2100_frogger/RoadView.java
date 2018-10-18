@@ -12,7 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
-
+//This class is written by Xinyuan Ye
 public class RoadView extends View implements View.OnTouchListener, Runnable {
     public static final int STEPDELAY = 100;
     static float canvasH;
@@ -134,7 +134,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             riverPlaying = false;
             ggPlaying = true;
         }
-        
+
         this.invalidate();
         if (game.lives.lives == 0) {
             notifyGameOver();           // game is over when player has no more lives

@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
-
+//This class is written by Dong Xi
 public class River extends Sprite {
 
     private static final float STARTX = 0.0f;

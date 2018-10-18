@@ -3,7 +3,7 @@ package com.example.xinyuan.comp2100_frogger;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-
+//This class is written by Xiaoguang Lyu
 public class Frog extends Sprite {
 
     public static final float STARTX = 0.5f;

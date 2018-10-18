@@ -1,6 +1,6 @@
 package com.example.xinyuan.comp2100_frogger;
 
-
+//This class is written by Xinyuan Ye and Dong Xi
 public class Pos {
 
     float x, y;

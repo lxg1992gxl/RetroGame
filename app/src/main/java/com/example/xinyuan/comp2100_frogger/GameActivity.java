@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
+//This class is written by Zirui Tan
 public class GameActivity extends AppCompatActivity implements GameOver{
     Dialog restart;
     Dialog help;

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PosTest {
 
+    // written by Dong Xi
     @Test
     public void jumpedOnWoods() {
         Wood w = new Wood(0, 0.2f, 100, 1);
@@ -25,6 +26,7 @@ public class PosTest {
         assertFalse(f.pos.jumpedOnWoods(f,w));
     }
 
+    // written by Xinyuan Ye
     @Test
     public void hitByCar() {
         int cH = 1000;

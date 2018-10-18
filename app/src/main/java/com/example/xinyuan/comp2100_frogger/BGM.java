@@ -1,6 +1,6 @@
 package com.example.xinyuan.comp2100_frogger;
 
-
+//This class is written by Xinyuan Ye
 import android.content.Context;
 import android.media.MediaPlayer;
 
