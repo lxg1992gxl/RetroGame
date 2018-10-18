@@ -17,7 +17,7 @@ public class Game {
     private Frog frog;
     private Cars cars;
     private Woods woods;
-    public static boolean frogDied, won, ableToMove;
+    public static boolean frogDied, won, ableToMove, delayed;
     public static Score score;
     public Lives lives;
 
@@ -30,7 +30,7 @@ public class Game {
         river = new River();
         score = new Score();
         lives = new Lives();
-        frogDied = won = false;
+        frogDied = won = delayed = false;
         ableToMove = true;
         currentPlace = "ROAD";
     }
@@ -110,14 +110,18 @@ public class Game {
                 score.score++;
                 won = true;
             }
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    frog.pos.replace();
-                    won = false;
-                }
-            }, 4000);
+            if (!delayed) {
+                delayed = true;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        frog.pos.replace();
+                        won = false;
+                        delayed = false;
+                    }
+                }, 4000);
+            }
         }
 
         //check if frog is hit by a car
