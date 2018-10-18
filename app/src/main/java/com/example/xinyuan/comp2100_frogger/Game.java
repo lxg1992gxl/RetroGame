@@ -23,7 +23,6 @@ public class Game {
 
 
     public Game() {
-        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.generateWoods();
@@ -74,7 +73,7 @@ public class Game {
         }
         frog.attachOn();
 
-
+        
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
@@ -109,6 +108,7 @@ public class Game {
             if (!won) {
                 score.score++;
                 won = true;
+                ableToMove = false;
             }
             if (!delayed) {
                 delayed = true;
@@ -119,6 +119,7 @@ public class Game {
                         frog.pos.replace();
                         won = false;
                         delayed = false;
+                        ableToMove = true;
                     }
                 }, 4000);
             }
