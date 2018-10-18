@@ -59,8 +59,6 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             userY = event.getY();
             game.touch(checkRegion(userX, userY));
         }
-
-
         playBGM();
         invalidate();
         return true;
@@ -124,7 +122,14 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
             riverPlaying = false;
             ggPlaying = true;
         }
-        System.out.println("GG status" + ggPlaying);
+        System.out.println("Current " + Game.currentPlace);
+        System.out.println("GG status " + ggPlaying);
+        System.out.println("vic " + vicPlaying);
+        System.out.println("river " + riverPlaying);
+        System.out.println("road " + roadPlaying);
+        System.out.println("Frog is died " + Game.frogDied);
+        System.out.println("Game is won " + Game.won);
+        System.out.println();
         this.invalidate();
         return true;
     }
@@ -139,6 +144,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     // play different BGM based on the current frog location
     public void playBGM() {
         if (Game.currentPlace == "ROAD") {
+            ggPlaying = false;
             if (vicPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "ROAD");
@@ -159,7 +165,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 mp.start();
                 roadPlaying = true;
             }
-            ggPlaying = false;
+
 
         } else if (Game.currentPlace == "RIVER") {
             if (roadPlaying) {
@@ -168,9 +174,11 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
                 mp.start();
                 roadPlaying = false;
                 riverPlaying = true;
+                vicPlaying = false;
             }
         } else if (Game.currentPlace == "VIC") {
-            if (riverPlaying || roadPlaying) {
+            System.out.println("Hit gonna play VIC");
+            if (riverPlaying) {
                 BGM.stopPlaying(mp);
                 mp = BGM.play(this.getContext(), "VIC");
                 mp.start();

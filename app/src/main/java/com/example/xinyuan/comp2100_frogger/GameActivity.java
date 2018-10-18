@@ -28,6 +28,7 @@ public class GameActivity extends AppCompatActivity implements GameOver {
         restart.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         restart.show();
         BGM.stopPlaying(RoadView.mp);
+        onStop();
     }
 
     //Return to welcome activity to restart the game.

@@ -29,7 +29,7 @@ public class Game {
         river = new River();
         score = new Score();
         lives = new Lives();
-        frogDied =  won = false;
+        frogDied = won = false;
         ableToMove = true;
         currentPlace = "ROAD";
     }
