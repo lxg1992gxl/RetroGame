@@ -7,8 +7,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
-public class GameActivity extends AppCompatActivity implements GameOver {
+public class GameActivity extends AppCompatActivity implements GameOver{
     Dialog restart;
 
     @Override
@@ -26,11 +27,12 @@ public class GameActivity extends AppCompatActivity implements GameOver {
         restart.findViewById(R.id.restart);
         restart.setContentView(R.layout.restart_popup);
         restart.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView textView = restart.findViewById(R.id.showScore);
+        textView.setText("You got: " + Game.score.getScore());
         restart.show();
         BGM.stopPlaying(RoadView.mp);
         onStop();
     }
-
     //Return to welcome activity to restart the game.
     public void restartClick(View view) {
         Intent intent = new Intent(this, WelcomeActivity.class);

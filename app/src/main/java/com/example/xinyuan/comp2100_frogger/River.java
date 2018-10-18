@@ -19,9 +19,9 @@ public class River extends Sprite {
         int w = c.getWidth();
 
         p.setColor(Color.BLUE);
-        c.drawRect(STARTX, STARTY * h, w, ENDY * h, p);
-//        RectF river = new RectF (STARTX,STARTY*h,w,ENDY*h);
-//        c.drawBitmap(RoadView.riverImage,null,river,p);
+//        c.drawRect(STARTX, STARTY * h, w, ENDY * h, p);
+        RectF river = new RectF (STARTX,STARTY*h,w,ENDY*h);
+        c.drawBitmap(RoadView.riverImage,null,river,p);
 
     }
 }

@@ -1,6 +1,8 @@
 package com.example.xinyuan.comp2100_frogger;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
@@ -22,6 +24,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
     ArrayList<GameOver> observers;
     public static MediaPlayer mp;
     boolean riverPlaying, roadPlaying, vicPlaying, ggPlaying;
+    public static Bitmap riverImage;
 
 
     public RoadView(Context context, AttributeSet attrs) {
@@ -38,6 +41,7 @@ public class RoadView extends View implements View.OnTouchListener, Runnable {
         mp.start();
         roadPlaying = true;
         riverPlaying = vicPlaying = ggPlaying = false;
+        riverImage = BitmapFactory.decodeResource(getResources(), R.drawable.river);
 
     }
 

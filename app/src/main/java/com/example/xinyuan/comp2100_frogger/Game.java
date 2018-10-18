@@ -18,11 +18,12 @@ public class Game {
     private Cars cars;
     private Woods woods;
     public static boolean frogDied, won, ableToMove;
-    private Score score;
+    public static Score score;
     public Lives lives;
 
 
     public Game() {
+        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.generateWoods();
@@ -73,7 +74,7 @@ public class Game {
         }
         frog.attachOn();
 
-        
+
         if (frog.pos.y <= 0.12f) {
             currentPlace = "VIC";
         } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {

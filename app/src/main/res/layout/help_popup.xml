@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="475dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="5dp"
+    tools:layout_editor_absoluteX="17dp"
+    tools:layout_editor_absoluteY="99dp">
+
+
+    <Button
+        android:id="@+id/close"
+        android:layout_width="79dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="211dp"
+        android:background="@drawable/start_button"
+        android:onClick="closeClick"
+        android:text="Close"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/demonstration"
+        android:layout_width="261dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/demonstration" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="323dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="11dp"
+        android:text='In each game, a frog has 3 lives. Live reduce by one when it is hit by car or fall into the river. You can replay by clicking the "restart" button and there are three difficulty levels you can choose. As shown in the graph, you can click the corresponding areas on your devise to control the frog movement. Have fun!'
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/demonstration"
+        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintStart_toStartOf="@+id/demonstration"
+        app:layout_constraintTop_toBottomOf="@+id/close" />
+
+</android.support.constraint.ConstraintLayout>

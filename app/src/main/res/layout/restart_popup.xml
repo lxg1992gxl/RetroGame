@@ -2,44 +2,60 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="475dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     android:padding="5dp"
-    android:layout_gravity="center">
+    tools:layout_editor_absoluteX="17dp"
+    tools:layout_editor_absoluteY="99dp">
 
-
-    <Button
-        android:id="@+id/restart"
-        android:layout_width="120dp"
-        android:layout_height="121dp"
-        android:layout_marginBottom="176dp"
-        android:background="@drawable/start_button"
-        android:onClick="restartClick"
-        android:text="Restart"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="218dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Ooops! Try Again?"
+        android:id="@+id/textView5"
+        android:layout_width="196dp"
+        android:layout_height="89dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="17dp"
+        android:text="Try Again?"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/restart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/showScore" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="165dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="145dp"
+        android:background="@drawable/start_button"
+        android:onClick="restartClick"
+        android:text="Restart"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/showScore"
+        android:layout_width="224dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="51dp"
+        android:layout_marginRight="51dp"
+        android:layout_marginBottom="13dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
