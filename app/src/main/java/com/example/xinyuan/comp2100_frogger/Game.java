@@ -18,7 +18,7 @@ public class Game {
     private Cars cars;
     private Woods woods;
     public static boolean frogDied, won;
-    private Score score;
+    public static Score score;
     public Lives lives;
 
 
