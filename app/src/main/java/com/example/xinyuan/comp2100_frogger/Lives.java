@@ -19,6 +19,4 @@ public class Lives {
         p.setTextSize(70);
         c.drawText(String.valueOf(lives), xc, yc, p);
     }
-
-
 }

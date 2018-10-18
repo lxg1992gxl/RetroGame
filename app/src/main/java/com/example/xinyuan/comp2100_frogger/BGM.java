@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 
 public class BGM {
 
+    // play bgm
     public static MediaPlayer play(Context c, String bgm) {
         MediaPlayer mp;
         if (bgm == "ROAD") {
@@ -27,6 +28,7 @@ public class BGM {
         return null;
     }
 
+    // reset the bgm
     public static void stopPlaying(MediaPlayer mp) {
         if (mp != null) {
             mp.stop();

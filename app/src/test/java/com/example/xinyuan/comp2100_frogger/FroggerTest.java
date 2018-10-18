@@ -49,4 +49,19 @@ public class FroggerTest {
         y = 550;
         assertEquals("GORIGHT", RoadView.checkRegion(x, y));
     }
+
+    @Test
+    public void testGenerateCars() {
+        assertEquals(9, Cars.generateCar().size());
+    }
+
+    @Test
+    public void testRrplace() {
+        Frog a = new Frog();
+        a.pos.replace();
+        assertTrue("The x position of frog a should be 0.5, but get",a.pos.x==0.5f);
+        assertTrue("The y position of frog a should be 0.5, but get",a.pos.y==0.9f);
+    }
+
+
 }

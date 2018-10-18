@@ -23,7 +23,6 @@ public class Game {
 
 
     public Game() {
-        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.generateWoods();
@@ -32,7 +31,7 @@ public class Game {
         lives = new Lives();
         frogDied = won = delayed = false;
         ableToMove = true;
-        currentPlace = "ROAD";
+        currentPlace = "ROAD";          // default frog starting place
     }
 
     // draw all the game
@@ -59,8 +58,7 @@ public class Game {
         woods.step();
         woods.updateWoods(woods);
 
-        //return frog is dead when frog in river
-        //unless frog attachOn on a wood
+        // return frog is dead when frog in river unless frog is  attachOn on a wood
         if (frog.pos.y > 0.15f && frog.pos.y < 0.45f) {
             frogDied = true;
             for (Wood w : woods) {
@@ -74,16 +72,10 @@ public class Game {
         }
         frog.attachOn();
 
+        // get where the frog is currently at so that correct bgm can be played
+        getCurrentPlace();
 
-        if (frog.pos.y <= 0.12f) {
-            currentPlace = "VIC";
-        } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
-            currentPlace = "RIVER";
-        } else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
-            currentPlace = "ROAD";
-        }
-
-        //check if frog is dead
+        //check if frog is dead, and revive frog back to starting position after 1sec
         if (frogDied) {
             if (!won) {
                 lives.lives--;
@@ -103,12 +95,13 @@ public class Game {
 
         }
 
-        //if frog reach to the other side of the river
-        //increase score and replace the frog
+        //if frog reaches to the other side of the river increase score
+        // then replace the frog after 4 sec
         if (frog.reachGoal()) {
             if (!won) {
                 score.score++;
                 won = true;
+                ableToMove = false;
             }
             if (!delayed) {
                 delayed = true;
@@ -119,6 +112,7 @@ public class Game {
                         frog.pos.replace();
                         won = false;
                         delayed = false;
+                        ableToMove = true;
                     }
                 }, 4000);
             }
@@ -134,6 +128,8 @@ public class Game {
         }
     }
 
+
+    // move the frog according to player touch event
     public void touch(String move) {
         if (ableToMove) {
             if (move == "GOUP") {
@@ -152,6 +148,18 @@ public class Game {
                     frog.pos.x += FROGMOVEX;
             }
         }
+    }
+
+    // get the current frog's location
+    public String getCurrentPlace() {
+        if (frog.pos.y <= 0.12f) {
+            return currentPlace = "VIC";
+        } else if (frog.pos.y > 0.1f && frog.pos.y <= 0.52f) {
+            return currentPlace = "RIVER";
+        } else if (frog.pos.y > 0.5f && frog.pos.y <= 0.92f) {
+            return currentPlace = "ROAD";
+        }
+        throw new Error("Invalid place for frog!! " + frog.pos.y);
     }
 }
 
