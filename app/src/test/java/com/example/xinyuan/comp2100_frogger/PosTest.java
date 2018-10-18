@@ -9,6 +9,20 @@ public class PosTest {
 
     @Test
     public void jumpedOnWoods() {
+        Wood w = new Wood(0, 0.2f, 100, 1);
+        w.xc = 0;
+        w.yc = 0.2f * 1000;
+        w.woodHeight = 60;
+        w.woodWidth = 100;
+        Frog f = new Frog();
+        f.xc = 20;
+        f.yc = 210;
+        assertTrue(f.pos.jumpedOnWoods(f,w));
+        f.xc = 0;
+        assertFalse(f.pos.jumpedOnWoods(f,w));
+        f.xc = 20;
+        f.yc = 230;
+        assertFalse(f.pos.jumpedOnWoods(f,w));
     }
 
     @Test

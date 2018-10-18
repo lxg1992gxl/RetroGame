@@ -12,11 +12,11 @@ public class Lives {
         int h = c.getHeight();
         int w = c.getWidth();
 
-        float xc = 0.9f * w;
-        float yc = 0.03f * h;
+        float xc = 0.7f * w;
+        float yc = 0.035f * h;
 
         p.setColor(Color.RED);
         p.setTextSize(70);
-        c.drawText(String.valueOf(lives), xc, yc, p);
+        c.drawText("Lives: "+String.valueOf(lives), xc, yc, p);
     }
 }
