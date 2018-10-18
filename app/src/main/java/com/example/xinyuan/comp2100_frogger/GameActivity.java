@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity implements GameOver{
         restart.setContentView(R.layout.restart_popup);
         restart.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         TextView textView = restart.findViewById(R.id.showScore);
-        textView.setText("You got: " + Game.score.getScore());
+        textView.setText("You've scored: " + Game.score.getScore());
         restart.show();
         BGM.stopPlaying(RoadView.mp);
         onStop();

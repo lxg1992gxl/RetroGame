@@ -75,7 +75,7 @@ public class PosTest {
         testFrog3.pos.y -= 0.1f;           // emulate an UP jump
         testFrog3.pos.y -= 0.1f;           // emulate an UP jump
         testFrog3.pos.x += 0.1f;           // emulate a RIGHT jump
-        testFrog3.pos.y += 0.1f;           // emualte a DOWN jump
+        testFrog3.pos.y += 0.1f;           // emulate a DOWN jump
 
         testFrog3.xc = cW * testFrog3.pos.x;
         testFrog3.yc = cH * testFrog3.pos.y;

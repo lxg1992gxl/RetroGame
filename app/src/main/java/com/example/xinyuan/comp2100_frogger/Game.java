@@ -82,17 +82,20 @@ public class Game {
                 won = true;
                 ableToMove = false;
             }
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    frog.pos.replace();
-                    frog.attach(null);
-                    frogDied = won = false;
-                    ableToMove = true;
-                }
-            }, 1000);
-
+            if (!delayed) {
+                delayed = true;
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        frog.pos.replace();
+                        frog.attach(null);
+                        frogDied = won = false;
+                        ableToMove = true;
+                        delayed = false;
+                    }
+                }, 1000);
+            }
         }
 
         //if frog reaches to the other side of the river increase score
