@@ -23,7 +23,6 @@ public class Game {
 
 
     public Game() {
-        System.out.println(gameMode);
         frog = new Frog();
         cars = Cars.generateCar();
         woods = Woods.generateWoods();
@@ -128,7 +127,7 @@ public class Game {
     }
 
 
-    // move the frog according to user touch event
+    // move the frog according to player touch event
     public void touch(String move) {
         if (ableToMove) {
             if (move == "GOUP") {
